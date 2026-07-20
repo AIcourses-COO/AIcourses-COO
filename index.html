@@ -1,71 +1,68 @@
 <!DOCTYPE html>
-
 <html lang="hy">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="COO Office AI Learning Hub" name="description"/>
-<title>COO Office AI Learning Hub</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="COO Office AI Learning Portal" />
+  <title>COO Office AI Learning Portal</title>
+
+  <style>
     :root{
-      --bg:#07111f;
-      --bg-soft:#0b1728;
+      --bg:#06101c;
+      --bg2:#0a1626;
       --panel:#0f1d31;
-      --panel-2:#13243b;
-      --text:#f4f7fb;
-      --muted:#a8b4c5;
-      --line:rgba(255,255,255,.09);
-      --blue:#69a7ff;
-      --cyan:#65d8df;
-      --purple:#a98cff;
-      --green:#67d59b;
-      --gold:#f2c66d;
-      --danger:#ff8b8b;
-      --shadow:0 22px 60px rgba(0,0,0,.28);
-      --radius:24px;
+      --panel2:#13253d;
+      --text:#f7f9fc;
+      --muted:#9fb0c5;
+      --line:rgba(255,255,255,.08);
+      --blue:#67a9ff;
+      --cyan:#70e1d9;
+      --purple:#a98dff;
+      --green:#6fdaa1;
+      --gold:#f0c46a;
+      --shadow:0 25px 80px rgba(0,0,0,.35);
+      --radius:26px;
     }
 
     *{box-sizing:border-box}
-
-    html{
-      scroll-behavior:smooth;
-    }
-
+    html{scroll-behavior:smooth}
     body{
       margin:0;
+      color:var(--text);
       font-family:Inter,Segoe UI,Arial,sans-serif;
       background:
-        radial-gradient(circle at 0% 0%,rgba(105,167,255,.14),transparent 34%),
-        radial-gradient(circle at 100% 10%,rgba(169,140,255,.12),transparent 30%),
-        linear-gradient(180deg,#07111f 0%,#081421 42%,#06101c 100%);
-      color:var(--text);
-      line-height:1.6;
+        radial-gradient(circle at 5% 0%,rgba(103,169,255,.15),transparent 30%),
+        radial-gradient(circle at 95% 6%,rgba(169,141,255,.13),transparent 28%),
+        linear-gradient(180deg,#06101c 0%,#08131f 45%,#06101c 100%);
       min-height:100vh;
     }
 
     a{color:inherit}
-
-    button,
-    input{
-      font:inherit;
-    }
+    button,input{font:inherit}
 
     .container{
-      width:min(1180px,calc(100% - 32px));
+      width:min(1220px,calc(100% - 34px));
       margin:auto;
+    }
+
+    .glass{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
     }
 
     .topbar{
       position:sticky;
       top:0;
-      z-index:50;
+      z-index:100;
+      background:rgba(6,16,28,.75);
       backdrop-filter:blur(18px);
-      background:rgba(7,17,31,.74);
       border-bottom:1px solid var(--line);
     }
 
     .nav{
-      min-height:72px;
+      min-height:74px;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -77,78 +74,96 @@
       align-items:center;
       gap:12px;
       text-decoration:none;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.2px;
     }
 
     .brand-mark{
-      width:42px;
-      height:42px;
-      border-radius:14px;
+      width:44px;
+      height:44px;
       display:grid;
       place-items:center;
+      border-radius:15px;
       background:linear-gradient(135deg,var(--blue),var(--purple));
-      box-shadow:0 12px 30px rgba(105,167,255,.22);
-      font-size:20px;
+      box-shadow:0 12px 30px rgba(103,169,255,.24);
     }
 
     .nav-links{
       display:flex;
+      gap:7px;
       flex-wrap:wrap;
       justify-content:flex-end;
-      gap:8px;
     }
 
     .nav-links a{
       text-decoration:none;
       color:var(--muted);
-      padding:9px 13px;
+      padding:10px 13px;
       border-radius:12px;
-      transition:.2s ease;
       font-size:14px;
+      transition:.2s ease;
     }
 
     .nav-links a:hover{
       color:var(--text);
-      background:rgba(255,255,255,.06);
+      background:rgba(255,255,255,.055);
     }
 
     .hero{
-      padding:96px 0 60px;
+      padding:84px 0 40px;
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.12fr .88fr;
-      gap:32px;
-      align-items:center;
+      grid-template-columns:1.13fr .87fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .hero-copy-card{
+      padding:34px;
+      border-radius:32px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-copy-card::after{
+      content:"";
+      position:absolute;
+      width:320px;
+      height:320px;
+      right:-130px;
+      top:-130px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(103,169,255,.26),transparent 68%);
+      pointer-events:none;
     }
 
     .eyebrow{
       display:inline-flex;
       align-items:center;
-      gap:9px;
+      gap:8px;
       padding:8px 12px;
-      border:1px solid rgba(105,167,255,.28);
-      background:rgba(105,167,255,.08);
       border-radius:999px;
-      color:#cfe2ff;
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:.4px;
+      color:#d7e7ff;
+      border:1px solid rgba(103,169,255,.3);
+      background:rgba(103,169,255,.08);
+      font-size:12px;
       text-transform:uppercase;
+      letter-spacing:.8px;
+      font-weight:800;
     }
 
     h1{
-      margin:20px 0 18px;
-      max-width:830px;
-      font-size:clamp(42px,6vw,78px);
-      line-height:1.03;
-      letter-spacing:-2.2px;
+      margin:22px 0 18px;
+      font-size:clamp(46px,6vw,82px);
+      line-height:1.02;
+      letter-spacing:-2.5px;
+      max-width:850px;
     }
 
     .gradient-text{
-      background:linear-gradient(90deg,#ffffff 0%,#8fc1ff 45%,#b6a4ff 100%);
+      background:linear-gradient(90deg,#fff,#8bc2ff 46%,#b8a7ff);
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
@@ -159,175 +174,293 @@
       max-width:760px;
       color:var(--muted);
       font-size:18px;
+      line-height:1.75;
     }
 
     .hero-actions{
       display:flex;
-      flex-wrap:wrap;
       gap:12px;
-      margin-top:30px;
+      flex-wrap:wrap;
+      margin-top:28px;
     }
 
     .btn{
+      min-height:48px;
+      padding:0 18px;
+      border:none;
+      border-radius:14px;
+      text-decoration:none;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
-      min-height:48px;
-      padding:0 18px;
-      border-radius:14px;
-      text-decoration:none;
-      border:1px solid transparent;
-      font-weight:800;
+      gap:9px;
+      font-weight:850;
       cursor:pointer;
       transition:.2s ease;
     }
 
+    .btn:hover{transform:translateY(-2px)}
     .btn-primary{
-      color:#07111f;
-      background:linear-gradient(135deg,#80b8ff,#8be7e1);
-      box-shadow:0 14px 28px rgba(105,167,255,.2);
+      color:#07111e;
+      background:linear-gradient(135deg,#88beff,#83e3db);
+      box-shadow:0 16px 30px rgba(103,169,255,.18);
     }
 
     .btn-secondary{
       color:var(--text);
-      background:rgba(255,255,255,.04);
-      border-color:var(--line);
-    }
-
-    .btn:hover{
-      transform:translateY(-2px);
-    }
-
-    .hero-panel{
-      position:relative;
-      overflow:hidden;
-      padding:28px;
+      background:rgba(255,255,255,.045);
       border:1px solid var(--line);
-      border-radius:30px;
-      background:
-        linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025)),
-        var(--panel);
-      box-shadow:var(--shadow);
     }
 
-    .hero-panel::after{
-      content:"";
-      position:absolute;
-      width:180px;
-      height:180px;
-      right:-60px;
-      top:-60px;
-      border-radius:50%;
-      background:radial-gradient(circle,rgba(169,140,255,.35),transparent 70%);
+    .dashboard-card{
+      border-radius:32px;
+      padding:26px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
     }
 
-    .hero-panel h3{
-      margin:0 0 18px;
-      font-size:20px;
-    }
-
-    .flow{
-      display:grid;
-      gap:13px;
-      position:relative;
-      z-index:1;
-    }
-
-    .flow-item{
-      display:grid;
-      grid-template-columns:42px 1fr;
+    .welcome{
+      display:flex;
       align-items:center;
-      gap:13px;
-      padding:14px;
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:rgba(255,255,255,.035);
+      justify-content:space-between;
+      gap:16px;
     }
 
-    .flow-icon{
-      width:42px;
-      height:42px;
-      border-radius:13px;
+    .avatar{
+      width:54px;
+      height:54px;
+      border-radius:18px;
       display:grid;
       place-items:center;
-      background:rgba(105,167,255,.12);
+      background:linear-gradient(135deg,rgba(103,169,255,.22),rgba(169,141,255,.22));
+      border:1px solid var(--line);
+      font-weight:900;
+    }
+
+    .welcome h3{
+      margin:0;
       font-size:20px;
     }
 
-    .flow-item strong{
-      display:block;
-      margin-bottom:2px;
+    .welcome p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:13px;
     }
 
-    .flow-item span{
+    .progress-ring{
+      width:122px;
+      height:122px;
+      margin:28px auto 22px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at center,var(--panel) 54%,transparent 55%),
+        conic-gradient(var(--blue) 0deg,var(--cyan) 0deg,rgba(255,255,255,.07) 0deg);
+      transition:.3s ease;
+    }
+
+    .progress-ring strong{
+      font-size:27px;
+      display:block;
+      text-align:center;
+    }
+
+    .progress-ring span{
+      display:block;
+      color:var(--muted);
+      font-size:11px;
+      text-align:center;
+      margin-top:2px;
+    }
+
+    .dash-mini{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .dash-mini div{
+      text-align:center;
+      padding:13px 8px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+    }
+
+    .dash-mini b{
+      display:block;
+      font-size:20px;
+      margin-bottom:3px;
+    }
+
+    .dash-mini span{
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    .search-wrap{
+      margin-top:22px;
+      position:relative;
+    }
+
+    .search-wrap input{
+      width:100%;
+      height:54px;
+      padding:0 52px 0 18px;
+      color:var(--text);
+      border-radius:16px;
+      outline:none;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+    }
+
+    .search-wrap input::placeholder{color:#7f91a8}
+
+    .search-icon{
+      position:absolute;
+      right:18px;
+      top:50%;
+      transform:translateY(-50%);
+      color:var(--muted);
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+      margin-top:22px;
+    }
+
+    .stat{
+      padding:20px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(255,255,255,.03);
+    }
+
+    .stat b{
+      display:block;
+      font-size:28px;
+      line-height:1;
+      margin-bottom:8px;
+    }
+
+    .stat span{
       color:var(--muted);
       font-size:13px;
     }
 
     .section{
-      padding:62px 0;
+      padding:56px 0;
     }
 
     .section-head{
       display:flex;
-      align-items:flex-end;
       justify-content:space-between;
       gap:24px;
+      align-items:flex-end;
       margin-bottom:24px;
     }
 
     .section-head h2{
-      margin:0;
-      font-size:clamp(28px,4vw,44px);
-      letter-spacing:-1px;
+      margin:12px 0 0;
+      font-size:clamp(30px,4vw,46px);
+      letter-spacing:-1.3px;
     }
 
     .section-head p{
-      margin:8px 0 0;
+      margin:10px 0 0;
       color:var(--muted);
-      max-width:720px;
+      max-width:760px;
+      line-height:1.7;
     }
 
     .pill{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      color:#d9e8ff;
-      font-size:13px;
-      font-weight:700;
+      gap:7px;
+      white-space:nowrap;
       padding:8px 12px;
       border-radius:999px;
       border:1px solid var(--line);
+      color:#dce8f8;
       background:rgba(255,255,255,.035);
-      white-space:nowrap;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .continue-card{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:20px;
+      align-items:center;
+      padding:24px;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:
+        radial-gradient(circle at 100% 0%,rgba(103,169,255,.14),transparent 34%),
+        var(--panel);
+      margin-bottom:20px;
+    }
+
+    .continue-card h3{
+      margin:0 0 8px;
+      font-size:23px;
+    }
+
+    .continue-card p{
+      color:var(--muted);
+      margin:0 0 16px;
+    }
+
+    .mini-progress{
+      height:10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      overflow:hidden;
+    }
+
+    .mini-progress span{
+      display:block;
+      height:100%;
+      width:0%;
+      border-radius:inherit;
+      background:linear-gradient(90deg,var(--blue),var(--cyan));
+      transition:.3s ease;
     }
 
     .course-grid{
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:20px;
+      gap:18px;
     }
 
     .course-card{
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
       min-height:330px;
       padding:24px;
-      border-radius:var(--radius);
+      border-radius:24px;
       border:1px solid var(--line);
-      background:
-        linear-gradient(180deg,rgba(255,255,255,.048),rgba(255,255,255,.02)),
-        var(--panel);
-      box-shadow:0 18px 46px rgba(0,0,0,.17);
+      background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018)),var(--panel);
+      display:flex;
+      flex-direction:column;
+      position:relative;
+      overflow:hidden;
+      transition:.22s ease;
+    }
+
+    .course-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(103,169,255,.25);
     }
 
     .course-card::before{
       content:"";
       position:absolute;
-      inset:0 auto auto 0;
+      top:0;
+      left:0;
       width:100%;
       height:4px;
       background:var(--accent,linear-gradient(90deg,var(--blue),var(--cyan)));
@@ -335,71 +468,64 @@
 
     .card-top{
       display:flex;
-      align-items:center;
       justify-content:space-between;
       gap:12px;
+      align-items:center;
     }
 
     .provider{
       display:flex;
       align-items:center;
       gap:10px;
-      font-size:13px;
       color:var(--muted);
-      font-weight:700;
+      font-size:13px;
+      font-weight:800;
     }
 
     .provider-icon{
-      width:36px;
-      height:36px;
+      width:38px;
+      height:38px;
+      border-radius:12px;
       display:grid;
       place-items:center;
-      border-radius:12px;
       background:rgba(255,255,255,.06);
-      font-size:18px;
-    }
-
-    .level{
-      font-size:12px;
-      color:#d9e7fb;
-      padding:7px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.05);
-      border:1px solid var(--line);
+      color:#e8f2ff;
+      font-weight:900;
     }
 
     .course-card h3{
-      margin:22px 0 10px;
+      margin:20px 0 10px;
       font-size:24px;
-      line-height:1.25;
+      line-height:1.28;
     }
 
     .course-card p{
       color:var(--muted);
-      margin:0 0 18px;
+      margin:0 0 20px;
+      line-height:1.65;
     }
 
     .tags{
       display:flex;
-      flex-wrap:wrap;
       gap:8px;
-      margin-bottom:24px;
+      flex-wrap:wrap;
+      margin-bottom:22px;
     }
 
     .tag{
       font-size:12px;
       padding:7px 10px;
       border-radius:10px;
-      background:rgba(255,255,255,.045);
-      color:#d8e1ee;
       border:1px solid var(--line);
+      background:rgba(255,255,255,.035);
+      color:#dbe6f3;
     }
 
     .card-actions{
       margin-top:auto;
       display:flex;
-      flex-wrap:wrap;
       gap:10px;
+      flex-wrap:wrap;
     }
 
     .btn-small{
@@ -409,131 +535,133 @@
       font-size:14px;
     }
 
-    .anthropic-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:18px;
-    }
-
-    .mini-course{
-      display:flex;
-      flex-direction:column;
-      padding:22px;
-      min-height:260px;
-      border:1px solid var(--line);
-      border-radius:22px;
-      background:var(--panel);
-    }
-
-    .mini-course .number{
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      display:grid;
-      place-items:center;
-      background:rgba(169,140,255,.13);
-      color:#d9ceff;
-      font-weight:900;
-    }
-
-    .mini-course h3{
-      margin:18px 0 8px;
-      font-size:20px;
-    }
-
-    .mini-course p{
-      color:var(--muted);
-      margin:0 0 20px;
-      font-size:14px;
-    }
-
-    .steps{
+    .featured-grid{
       display:grid;
       grid-template-columns:repeat(4,minmax(0,1fr));
       gap:16px;
     }
 
-    .step{
-      padding:22px;
+    .featured-card{
+      min-height:280px;
+      padding:20px;
       border-radius:22px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.035);
+      background:var(--panel);
+      display:flex;
+      flex-direction:column;
+      transition:.22s ease;
     }
 
-    .step-number{
-      width:40px;
-      height:40px;
-      border-radius:13px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg,rgba(105,167,255,.18),rgba(101,216,223,.14));
-      color:#d8eeff;
+    .featured-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(169,141,255,.26);
+    }
+
+    .platform{
+      display:inline-flex;
+      width:max-content;
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:11px;
       font-weight:900;
+      color:#ded4ff;
+      border:1px solid rgba(169,141,255,.24);
+      background:rgba(169,141,255,.08);
     }
 
-    .step h3{
-      margin:16px 0 8px;
-      font-size:18px;
+    .featured-card h3{
+      margin:17px 0 9px;
+      font-size:19px;
+      line-height:1.35;
     }
 
-    .step p{
-      margin:0;
+    .featured-card p{
+      margin:0 0 18px;
       color:var(--muted);
-      font-size:14px;
+      font-size:13px;
+      line-height:1.6;
     }
+
+    .featured-card .btn{margin-top:auto}
 
     .library-grid{
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:20px;
+      gap:18px;
     }
 
-    .library-card{
+    .library-card,
+    .access-card{
       padding:24px;
-      border:1px solid var(--line);
       border-radius:24px;
+      border:1px solid var(--line);
+      background:var(--panel);
+    }
+
+    .library-card h3,
+    .access-card h3{
+      margin:16px 0 8px;
+      font-size:23px;
+    }
+
+    .library-card p,
+    .access-card p{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .access-card{
+      display:grid;
+      grid-template-columns:76px 1fr auto;
+      gap:20px;
+      align-items:center;
       background:
-        linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.018)),
+        radial-gradient(circle at 0% 0%,rgba(111,218,161,.12),transparent 30%),
         var(--panel);
     }
 
-    .library-card h3{
-      margin:14px 0 8px;
-      font-size:22px;
-    }
-
-    .library-card p{
-      color:var(--muted);
-      margin:0 0 18px;
-    }
-
-    .library-icon{
-      width:50px;
-      height:50px;
-      border-radius:16px;
+    .access-card h3{margin-top:0}
+    .access-icon{
+      width:76px;
+      height:76px;
+      border-radius:22px;
       display:grid;
       place-items:center;
-      background:rgba(255,255,255,.06);
-      font-size:24px;
+      font-size:30px;
+      background:rgba(111,218,161,.1);
+      border:1px solid rgba(111,218,161,.16);
     }
 
-    .warning{
-      margin-top:20px;
-      padding:18px 20px;
-      border-radius:18px;
-      border:1px solid rgba(242,198,109,.28);
-      background:rgba(242,198,109,.08);
-      color:#f7dfad;
+    .tools-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
     }
 
-    .warning strong{
-      color:#ffe8b8;
+    .tool-card{
+      padding:20px;
+      border-radius:20px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
     }
 
-    .progress-wrap{
+    .tool-card h3{
+      margin:14px 0 6px;
+      font-size:18px;
+    }
+
+    .tool-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    .progress-layout{
       display:grid;
       grid-template-columns:1.15fr .85fr;
-      gap:20px;
+      gap:18px;
       align-items:start;
     }
 
@@ -547,39 +675,37 @@
 
     .progress-card h3,
     .certificate-card h3{
-      margin:0 0 10px;
-      font-size:22px;
+      margin:0 0 8px;
+      font-size:23px;
     }
 
-    .progress-card > p,
-    .certificate-card > p{
-      margin:0 0 20px;
+    .progress-card>p,
+    .certificate-card>p{
+      margin:0 0 18px;
       color:var(--muted);
     }
 
     .progress-bar{
       height:12px;
-      overflow:hidden;
-      background:rgba(255,255,255,.065);
       border-radius:999px;
-      margin:14px 0 8px;
+      overflow:hidden;
+      background:rgba(255,255,255,.07);
     }
 
     .progress-fill{
-      width:0%;
       height:100%;
+      width:0%;
       border-radius:inherit;
       background:linear-gradient(90deg,var(--blue),var(--green));
-      transition:.25s ease;
+      transition:.3s ease;
     }
 
-    .progress-label{
+    .progress-meta{
       display:flex;
       justify-content:space-between;
-      gap:14px;
       color:var(--muted);
-      font-size:13px;
-      margin-bottom:18px;
+      font-size:12px;
+      margin:9px 0 17px;
     }
 
     .checklist{
@@ -589,74 +715,62 @@
 
     .check-item{
       display:flex;
-      align-items:flex-start;
       gap:12px;
+      align-items:flex-start;
       padding:13px 14px;
-      border-radius:14px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.028);
+      border-radius:14px;
+      background:rgba(255,255,255,.025);
       cursor:pointer;
     }
 
     .check-item input{
-      margin-top:4px;
       width:18px;
       height:18px;
-      accent-color:#70b0ff;
-      cursor:pointer;
+      margin-top:3px;
+      accent-color:var(--blue);
       flex:0 0 auto;
     }
 
     .check-item span{
-      color:#dce5f2;
       font-size:14px;
+      color:#dce6f1;
     }
 
-    .certificate-list{
+    .cert-list{
       display:grid;
-      gap:12px;
+      gap:11px;
       margin-top:18px;
     }
 
-    .certificate-item{
+    .cert{
       display:flex;
-      align-items:center;
       gap:12px;
-      padding:14px;
+      padding:13px;
       border:1px solid var(--line);
-      border-radius:15px;
-      background:rgba(255,255,255,.028);
+      border-radius:14px;
+      background:rgba(255,255,255,.025);
     }
 
-    .certificate-item b{
-      display:block;
-      font-size:14px;
-    }
-
-    .certificate-item small{
-      color:var(--muted);
-    }
-
-    .icon-box{
-      width:40px;
-      height:40px;
-      border-radius:13px;
+    .cert i{
+      width:38px;
+      height:38px;
+      border-radius:12px;
       display:grid;
       place-items:center;
-      background:rgba(103,213,155,.11);
-      color:#a8f0c7;
+      background:rgba(111,218,161,.1);
+      color:#aef0ca;
+      font-style:normal;
       flex:0 0 auto;
     }
 
-    .faq{
-      display:grid;
-      gap:12px;
-    }
+    .cert b{display:block;font-size:14px}
+    .cert small{color:var(--muted)}
 
     details{
       border:1px solid var(--line);
       border-radius:18px;
-      background:rgba(255,255,255,.03);
+      background:rgba(255,255,255,.025);
       padding:0 18px;
     }
 
@@ -664,23 +778,25 @@
       cursor:pointer;
       list-style:none;
       padding:18px 0;
-      font-weight:800;
+      font-weight:850;
     }
 
     summary::-webkit-details-marker{display:none}
 
     details p{
-      margin:0;
-      padding:0 0 18px;
       color:var(--muted);
+      padding:0 0 18px;
+      margin:0;
     }
 
+    .faq{display:grid;gap:12px}
+
     footer{
-      margin-top:50px;
+      margin-top:40px;
       padding:32px 0 44px;
       border-top:1px solid var(--line);
       color:var(--muted);
-      font-size:14px;
+      font-size:13px;
     }
 
     .footer-row{
@@ -694,16 +810,16 @@
       position:fixed;
       right:20px;
       bottom:20px;
-      z-index:100;
+      z-index:200;
       opacity:0;
       transform:translateY(12px);
       pointer-events:none;
       padding:14px 16px;
       border-radius:14px;
-      background:#f4f8ff;
-      color:#091423;
-      font-weight:800;
-      box-shadow:0 18px 44px rgba(0,0,0,.3);
+      background:#f7f9fc;
+      color:#07111f;
+      font-weight:850;
+      box-shadow:0 20px 50px rgba(0,0,0,.35);
       transition:.25s ease;
     }
 
@@ -712,863 +828,786 @@
       transform:translateY(0);
     }
 
-    @media(max-width:980px){
+    .hidden{display:none!important}
+
+    @media(max-width:1050px){
       .hero-grid,
-      .progress-wrap{
-        grid-template-columns:1fr;
-      }
-
-      .anthropic-grid{
-        grid-template-columns:1fr;
-      }
-
-      .steps{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-      }
-    }
-
-    @media(max-width:760px){
-      .nav{
-        align-items:flex-start;
-        padding:13px 0;
-      }
-
-      .nav-links{
-        display:none;
-      }
-
-      .hero{
-        padding-top:62px;
-      }
-
-      h1{
-        font-size:clamp(40px,12vw,60px);
-        letter-spacing:-1.5px;
-      }
-
-      .course-grid,
-      .library-grid,
-      .steps{
-        grid-template-columns:1fr;
-      }
-
-      .section{
-        padding:46px 0;
-      }
-
-      .section-head{
-        align-items:flex-start;
-        flex-direction:column;
-      }
-
-      .btn{
-        width:100%;
-      }
-
-      .card-actions .btn{
-        width:auto;
-        flex:1 1 180px;
-      }
-    }
-  
-    .stats-grid{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:16px;
-      margin-top:28px;
-    }
-
-    .stat-card{
-      padding:20px;
-      border:1px solid var(--line);
-      border-radius:20px;
-      background:rgba(255,255,255,.035);
-    }
-
-    .stat-value{
-      display:block;
-      font-size:32px;
-      font-weight:900;
-      line-height:1;
-      margin-bottom:8px;
-    }
-
-    .stat-label{
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    .quick-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:18px;
-    }
-
-    .quick-card{
-      display:flex;
-      flex-direction:column;
-      min-height:250px;
-      padding:22px;
-      border-radius:22px;
-      border:1px solid var(--line);
-      background:var(--panel);
-    }
-
-    .quick-card h3{
-      margin:18px 0 8px;
-      font-size:20px;
-    }
-
-    .quick-card p{
-      color:var(--muted);
-      margin:0 0 18px;
-      font-size:14px;
-    }
-
-    .platform-badge{
-      display:inline-flex;
-      width:max-content;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.045);
-      color:#dbe7f6;
-      font-size:12px;
-      font-weight:800;
-    }
-
-    .access-card{
-      display:grid;
-      grid-template-columns:72px 1fr auto;
-      gap:18px;
-      align-items:center;
-      padding:24px;
-      border-radius:24px;
-      border:1px solid rgba(103,213,155,.22);
-      background:
-        linear-gradient(135deg,rgba(103,213,155,.08),rgba(105,167,255,.04)),
-        var(--panel);
-    }
-
-    .access-icon{
-      width:72px;
-      height:72px;
-      border-radius:20px;
-      display:grid;
-      place-items:center;
-      font-size:30px;
-      background:rgba(103,213,155,.12);
-    }
-
-    .access-card h3{
-      margin:0 0 6px;
-      font-size:23px;
-    }
-
-    .access-card p{
-      margin:0;
-      color:var(--muted);
-    }
-
-    .tool-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:16px;
-    }
-
-    .tool-card{
-      padding:20px;
-      border-radius:20px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.032);
-    }
-
-    .tool-card h3{
-      margin:12px 0 6px;
-      font-size:18px;
-    }
-
-    .tool-card p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    @media(max-width:980px){
-      .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .access-card{grid-template-columns:64px 1fr}
+      .progress-layout{grid-template-columns:1fr}
+      .featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .access-card{grid-template-columns:70px 1fr}
       .access-card .btn{grid-column:1/-1}
     }
 
     @media(max-width:760px){
-      .stats-grid,
-      .quick-grid,
-      .tool-grid{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .hero{padding-top:54px}
+      .hero-copy-card,.dashboard-card{padding:24px}
+      .stats,
+      .course-grid,
+      .featured-grid,
+      .library-grid,
+      .tools-grid{grid-template-columns:1fr}
+      .dash-mini{grid-template-columns:1fr 1fr 1fr}
+      .section{padding:44px 0}
+      .section-head{align-items:flex-start;flex-direction:column}
+      .continue-card{grid-template-columns:1fr}
+      .btn{width:100%}
+      .card-actions .btn{width:auto;flex:1 1 180px}
+      .access-card{grid-template-columns:1fr}
     }
-</style>
+  </style>
 </head>
+
 <body>
+
 <header class="topbar">
-<div class="container nav">
-<a class="brand" href="#top">
-<span class="brand-mark">AI</span>
-<span>COO Office Learning Hub</span>
-</a>
-<nav aria-label="Գլխավոր նավիգացիա" class="nav-links"><a href="#dashboard">Dashboard</a><a href="#required">Պարտադիր դասեր</a><a href="#featured">Ընտրված դասեր</a><a href="#library">Գրադարան</a><a href="#access">Մուտքեր</a><a href="#progress">Առաջընթաց</a></nav>
-</div>
+  <div class="container nav">
+    <a class="brand" href="#top">
+      <span class="brand-mark">AI</span>
+      <span>COO Office Learning Portal</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Գլխավոր նավիգացիա">
+      <a href="#required">Պարտադիր դասեր</a>
+      <a href="#featured">Ընտրված դասեր</a>
+      <a href="#library">Գրադարան</a>
+      <a href="#access">Մուտքեր</a>
+      <a href="#progress">Առաջընթաց</a>
+    </nav>
+  </div>
 </header>
+
 <main id="top">
-<section class="hero" id="dashboard">
-<div class="container hero-grid">
-<div>
-<span class="eyebrow">COO Office · AI Learning Program</span>
-<h1>
-            Սովորի՛ր AI-ը,
-            <span class="gradient-text">կիրառի՛ր աշխատանքում</span>
-</h1>
-<p class="hero-copy">
-            Միասնական կրթական հարթակ COO Office-ի աշխատակիցների համար՝
-            Microsoft Copilot, Data Analytics, Claude և AI գործիքների վերաբերյալ
-            դասընթացներին, assessment-ներին, badge-երին ու սերտիֆիկատներին արագ հասանելիությամբ։
-          </p>
-<div class="hero-actions">
-<a class="btn btn-primary" href="#learning-paths">Սկսել ուսուցումը →</a>
-<a class="btn btn-secondary" href="#process">Տեսնել ամբողջ գործընթացը</a>
-</div>
 
-<div class="stats-grid">
-<div class="stat-card">
-<span class="stat-value">5</span>
-<span class="stat-label">Պարտադիր ուսումնական ծրագրեր</span>
-</div>
-<div class="stat-card">
-<span class="stat-value">4</span>
-<span class="stat-label">Նախապես ընտրված դասընթացներ</span>
-</div>
-<div class="stat-card">
-<span class="stat-value">2</span>
-<span class="stat-label">Խորացված ուսումնական գրադարաններ</span>
-</div>
-<div class="stat-card">
-<span class="stat-value">1</span>
-<span class="stat-label">Միասնական մուտքերի directory</span>
-</div>
-</div>
-</div>
-<aside class="hero-panel">
-<h3>Ուսուցման ընդհանուր ուղին</h3>
-<div class="flow">
-<div class="flow-item">
-<div class="flow-icon">1</div>
-<div>
-<strong>Ընտրել դասընթացը</strong>
-<span>Բացեք համապատասխան collection-ը կամ course-ը։</span>
-</div>
-</div>
-<div class="flow-item">
-<div class="flow-icon">2</div>
-<div>
-<strong>Մուտք գործել անձնական պրոֆիլով</strong>
-<span>Microsoft կամ Anthropic հարթակում օգտագործեք ձեր աշխատանքային հաշիվը։</span>
-</div>
-</div>
-<div class="flow-item">
-<div class="flow-icon">3</div>
-<div>
-<strong>Անցնել դասերն ու assessment-ը</strong>
-<span>Ավարտեք բոլոր unit-ները և համապատասխան ստուգումը։</span>
-</div>
-</div>
-<div class="flow-item">
-<div class="flow-icon">4</div>
-<div>
-<strong>Ուղարկել արդյունքը ղեկավարին</strong>
-<span>Badge-ը կամ certificate-ը ուղարկեք ձեր անմիջական ղեկավարին։</span>
-</div>
-</div>
-</div>
-</aside>
-</div>
-</section>
-<section class="section" id="required">
-<div class="container">
-<div class="section-head">
-<div>
-<span class="eyebrow">Microsoft Learning Collections</span>
-<h2>Հիմնական ուսումնական ուղղություններ</h2>
-<p>
-              Ընտրեք ձեր դերին համապատասխան collection-ը և Microsoft Learn-ում
-              մուտք գործեք ձեր հիմնական աշխատանքային login/password-ով։
-            </p>
-</div>
-<span class="pill">Պարտադիր ուսուցում</span>
-</div>
-<div class="course-grid">
-<article class="course-card" style="--accent:linear-gradient(90deg,#69a7ff,#65d8df)">
-<div class="card-top">
-<div class="provider">
-<span class="provider-icon">M</span>
-                Microsoft Learn
-              </div>
-<span class="level">Operations</span>
-</div>
-<h3>AI &amp; Copilot Fundamentals for Operations Department</h3>
-<p>
-              AI-ի և Microsoft Copilot-ի հիմնական հասկացությունները,
-              կիրառման հնարավորությունները և գործնական օգտագործումը Operations թիմերի համար։
-            </p>
-<div class="tags">
-<span class="tag">AI Fundamentals</span>
-<span class="tag">Microsoft Copilot</span>
-<span class="tag">Operations</span>
-</div>
-<div class="card-actions">
-<a class="btn btn-primary btn-small" href="https://learn.microsoft.com/en-us/collections/0n65i1tyn80ewd?&amp;sharingId=B21B0045D64A6A01" rel="noopener noreferrer" target="_blank">
-                Բացել collection-ը
-              </a>
-<a class="btn btn-secondary btn-small" href="#process">
-                Տեսնել քայլերը
-              </a>
-</div>
-</article>
-<article class="course-card" style="--accent:linear-gradient(90deg,#a98cff,#69a7ff)">
-<div class="card-top">
-<div class="provider">
-<span class="provider-icon">M</span>
-                Microsoft Learn
-              </div>
-<span class="level">Data Analysts</span>
-</div>
-<h3>AI &amp; Copilot Collection for Data Analysts</h3>
-<p>
-              AI և Copilot գործիքների օգտագործում տվյալների վերլուծության,
-              insight-ների ձևավորման և աշխատանքային գործընթացների արագացման համար։
-            </p>
-<div class="tags">
-<span class="tag">Data Analytics</span>
-<span class="tag">Copilot</span>
-<span class="tag">AI Productivity</span>
-</div>
-<div class="card-actions">
-<a class="btn btn-primary btn-small" href="https://learn.microsoft.com/en-us/collections/zwgybdt04z6mxw?&amp;sharingId=B21B0045D64A6A01" rel="noopener noreferrer" target="_blank">
-                Բացել collection-ը
-              </a>
-<a class="btn btn-secondary btn-small" href="#process">
-                Տեսնել քայլերը
-              </a>
-</div>
-</article>
-</div>
-</div>
-</section>
-<section class="section">
-<div class="container">
-<div class="section-head">
-<div>
-<span class="eyebrow">Anthropic Academy</span>
-<h2>Claude ուսումնական դասընթացներ</h2>
-<p>
-              Դասընթացներն անցնելուց հետո պարտադիր ավարտեք course-ի ներքևում ներկայացված
-              certification-ը և ստացված certificate-ը ուղարկեք ձեր ղեկավարին։
-            </p>
-</div>
-<span class="pill">Certificate required</span>
-</div>
-<div class="anthropic-grid">
-<article class="mini-course">
-<div class="number">01</div>
-<h3>Claude 101</h3>
-<p>
-              Claude-ի հիմնական հնարավորությունները, աշխատանքի սկզբունքներն ու
-              կիրառման հիմունքները։
-            </p>
-<a class="btn btn-primary btn-small" href="https://anthropic.skilljar.com/claude-101" rel="noopener noreferrer" target="_blank">
-              Սկսել դասընթացը
-            </a>
-</article>
-<article class="mini-course">
-<div class="number">02</div>
-<h3>AI Capabilities and Limitations</h3>
-<p>
-              AI համակարգերի կարողությունները, սահմանափակումները և անվտանգ,
-              պատասխանատու կիրառման սկզբունքները։
-            </p>
-<a class="btn btn-primary btn-small" href="https://anthropic.skilljar.com/ai-capabilities-and-limitations" rel="noopener noreferrer" target="_blank">
-              Սկսել դասընթացը
-            </a>
-</article>
-<article class="mini-course">
-<div class="number">03</div>
-<h3>AI Fluency Framework Foundations</h3>
-<p>
-              AI fluency-ի հիմնական շրջանակը և գործնական մոտեցումներ՝
-              AI-ի հետ ավելի արդյունավետ աշխատելու համար։
-            </p>
-<a class="btn btn-primary btn-small" href="https://anthropic.skilljar.com/ai-fluency-framework-foundations" rel="noopener noreferrer" target="_blank">
-              Սկսել դասընթացը
-            </a>
-</article>
-</div>
-</div>
-</section>
+  <section class="hero">
+    <div class="container hero-grid">
 
-<section class="section" id="featured">
-<div class="container">
-<div class="section-head">
-<div>
-<span class="eyebrow">Featured Courses</span>
-<h2>Նախապես ընտրված օգտակար դասընթացներ</h2>
-<p>
-          Այս դասընթացներն արդեն առանձնացված են COO Office-ի աշխատակիցների համար,
-          որպեսզի անհրաժեշտ չլինի երկար որոնել տարբեր ուսումնական հարթակներում։
+      <div class="hero-copy-card glass">
+        <span class="eyebrow">COO Office · Internal Learning Hub</span>
+
+        <h1>
+          Learn AI.
+          <span class="gradient-text">Work Smarter.</span>
+        </h1>
+
+        <p class="hero-copy">
+          COO Office-ի միասնական AI Learning Portal՝ պարտադիր դասընթացների,
+          ընտրված ուսումնական նյութերի, certification-ների, badge-երի,
+          հարթակների մուտքերի և անձնական առաջընթացի կառավարման համար։
         </p>
-</div>
-<span class="pill">Recommended</span>
-</div>
-<div class="quick-grid">
-<article class="quick-card">
-<span class="platform-badge">Pluralsight</span>
-<h3>Microsoft 365 Copilot for Outlook, Teams &amp; OneDrive</h3>
-<p>
-          Գործնական դասընթաց Microsoft 365 Copilot-ի օգտագործման վերաբերյալ՝
-          Outlook, Teams և OneDrive միջավայրերում։
-        </p>
-<a class="btn btn-primary btn-small" href="https://app.pluralsight.com/id/?redirectTo=/ilx/video-courses/microsoft-365-copilot-outlook-teams-onedrive/course-overview" rel="noopener noreferrer" target="_blank">
-          Բացել դասընթացը
-        </a>
-</article>
-<article class="quick-card">
-<span class="platform-badge">Pluralsight</span>
-<h3>Copilot in Microsoft Teams</h3>
-<p>
-          Copilot-ի գործնական կիրառումը Microsoft Teams-ում՝ հանդիպումների,
-          հաղորդակցման և թիմային աշխատանքի արդյունավետությունը բարձրացնելու համար։
-        </p>
-<a class="btn btn-primary btn-small" href="https://app.pluralsight.com/id/?redirectTo=/ilx/video-courses/copilot-microsoft-teams/course-overview" rel="noopener noreferrer" target="_blank">
-          Բացել դասընթացը
-        </a>
-</article>
-<article class="quick-card">
-<span class="platform-badge">DataCamp</span>
-<h3>Working with Microsoft Copilot</h3>
-<p>
-          Microsoft Copilot-ի կիրառումը առօրյա աշխատանքային խնդիրների,
-          տվյալների և արտադրողականության բարելավման համար։
-        </p>
-<a class="btn btn-primary btn-small" href="https://www.datacamp.com/users/sign_in?redirect=http%3A%2F%2Fapp.datacamp.com%2Flearn%2Fcourses%2Fworking-with-microsoft-copilot" rel="noopener noreferrer" target="_blank">
-          Բացել դասընթացը
-        </a>
-</article>
-<article class="quick-card">
-<span class="platform-badge">LinkedIn Learning</span>
-<h3>Learning Copilot Chat: Keep Your Data Safe</h3>
-<p>
-          Copilot Chat-ի անվտանգ օգտագործում, տվյալների պաշտպանություն
-          և պատասխանատու աշխատանք AI գործիքների հետ։
-        </p>
-<a class="btn btn-primary btn-small" href="https://www.linkedin.com/learning/learning-copilot-chat-basic/keep-your-data-safe-in-copilot-chat" rel="noopener noreferrer" target="_blank">
-          Բացել դասընթացը
-        </a>
-</article>
-</div>
-</div>
-</section>
-<section class="section" id="process">
-<div class="container">
-<div class="section-head">
-<div>
-<span class="eyebrow">Learning Process</span>
-<h2>Ինչպես անցնել դասընթացները</h2>
-<p>
-              Պահպանեք ներկայացված հերթականությունը, որպեսզի ձեր ուսուցումն ու
-              ստացված արդյունքները լինեն ամբողջական և տեսանելի։
-            </p>
-</div>
-</div>
-<div class="steps">
-<article class="step">
-<div class="step-number">1</div>
-<h3>Բացել հղումը</h3>
-<p>
-              Ընտրեք ձեր դերին համապատասխան Microsoft collection-ը կամ Anthropic course-ը։
-            </p>
-</article>
-<article class="step">
-<div class="step-number">2</div>
-<h3>Մուտք գործել</h3>
-<p>
-              Գրանցվեք կամ մուտք գործեք ձեր աշխատանքային կամ անձնական պրոֆիլով՝
-              ըստ հարթակի պահանջի։
-            </p>
-</article>
-<article class="step">
-<div class="step-number">3</div>
-<h3>Ավարտել ուսուցումը</h3>
-<p>
-              Անցեք բոլոր module-ները և unit-ները հերթականությամբ՝ չբաց թողնելով առաջադրանքները։
-            </p>
-</article>
-<article class="step">
-<div class="step-number">4</div>
-<h3>Ստանալ ապացույցը</h3>
-<p>
-              Microsoft-ում ստացեք badge, Anthropic-ում՝ certificate, ապա ուղարկեք ղեկավարին։
-            </p>
-</article>
-</div>
-</div>
-</section>
-<section class="section" id="library">
-<div class="container">
-<div class="section-head">
-<div>
-<span class="eyebrow">Knowledge Library</span>
-<h2>Լրացուցիչ ուսումնական գրադարան</h2>
-<p>
-              Օգտագործեք այս հղումները՝ լրացուցիչ թեմաներ ուսումնասիրելու և
-              ձեր հետաքրքրություններին համապատասխան նոր դասընթացներ գտնելու համար։
-            </p>
-</div>
-<span class="pill">Self-development</span>
-</div>
-<div class="library-grid">
-<article class="library-card">
-<div class="library-icon">A</div>
-<h3>Anthropic Course Library</h3>
-<p>
-              Anthropic-ի ամբողջական ուսումնական կատալոգ՝ Claude, AI fluency,
-              անվտանգություն և AI կիրառման տարբեր թեմաներով։
-            </p>
-<a class="btn btn-secondary btn-small" href="https://anthropic.skilljar.com/" rel="noopener noreferrer" target="_blank">
-              Բացել գրադարանը
-            </a>
-</article>
-<article class="library-card">
-<div class="library-icon">M</div>
-<h3>Microsoft Learn · Copilot Training</h3>
-<p>
-              Microsoft Learn-ի ուսումնական կատալոգ՝ Copilot և AI թեմաներով
-              դասընթացներ, module-ներ և learning path-եր գտնելու համար։
-            </p>
-<a class="btn btn-secondary btn-small" href="https://learn.microsoft.com/en-us/training/browse/?products=ms-copilot" rel="noopener noreferrer" target="_blank">
-              Բացել գրադարանը
-            </a>
-</article>
-</div>
-<div class="warning">
-</div>
-</section>
-<section class="section" id="access">
-<div class="container">
-<div class="section-head">
-<div>
-<span class="eyebrow">Platform Access</span>
-<h2>Ուսումնական հարթակների մուտքի տվյալներ</h2>
-<p>
-          Բոլոր ուսումնական հարթակների login/password տվյալները հավաքված են
-          սահմանափակ հասանելիությամբ SharePoint ֆայլում։
-        </p>
-</div>
-<span class="pill">Internal access</span>
-</div>
-<article class="access-card">
-<div class="access-icon">🔐</div>
-<div>
-<h3>Learning Platforms Access Directory</h3>
-<p>
-          Microsoft, Pluralsight, DataCamp, LinkedIn Learning և այլ հարթակների
-          մուտքի տվյալները տեսնելու համար բացեք ներքին SharePoint ֆայլը։
-        </p>
-</div>
-<a class="btn btn-primary" href="https://digitainllc.sharepoint.com/:x:/s/PeopleandCulture/Ec9FbYAJU_RPmLOBQk9JNdEB2gveh02gn07S_Z8NAF-HDQ?e=wk1loU" rel="noopener noreferrer" target="_blank">
-        Բացել Access Directory-ը
-      </a>
-</article>
-<div class="warning">
-<strong>Ուշադրություն.</strong>
-      այս ֆայլը նախատեսված է միայն ներքին օգտագործման համար։
-      Մի փոխանցեք login/password տվյալները երրորդ անձանց և մի պահեք դրանք անձնական սարքերում։
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#required">Սկսել ուսուցումը →</a>
+          <a class="btn btn-secondary" href="#progress">Տեսնել իմ առաջընթացը</a>
+        </div>
+
+        <div class="search-wrap">
+          <input id="courseSearch" type="search" placeholder="Որոնել դասընթաց կամ հարթակ..." />
+          <span class="search-icon">⌕</span>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <b>5</b>
+            <span>Պարտադիր ուսումնական ծրագրեր</span>
+          </div>
+          <div class="stat">
+            <b>4</b>
+            <span>Ընտրված լրացուցիչ դասընթացներ</span>
+          </div>
+          <div class="stat">
+            <b>2</b>
+            <span>Խորացված գրադարաններ</span>
+          </div>
+          <div class="stat">
+            <b>1</b>
+            <span>Մուտքերի միասնական directory</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="dashboard-card glass">
+        <div class="welcome">
+          <div>
+            <h3>Welcome to your learning space</h3>
+            <p>Complete courses, collect badges and share results.</p>
+          </div>
+          <div class="avatar">COO</div>
+        </div>
+
+        <div class="progress-ring" id="progressRing">
+          <div>
+            <strong id="ringPercent">0%</strong>
+            <span>Completed</span>
+          </div>
+        </div>
+
+        <div class="dash-mini">
+          <div>
+            <b id="completedStat">0</b>
+            <span>Completed</span>
+          </div>
+          <div>
+            <b id="remainingStat">11</b>
+            <span>Remaining</span>
+          </div>
+          <div>
+            <b>2</b>
+            <span>Certificates</span>
+          </div>
+        </div>
+      </aside>
+
     </div>
-</div>
-</section>
+  </section>
 
+  <section class="section" id="required">
+    <div class="container">
 
-<section class="section" id="tools">
-<div class="container">
-<div class="section-head">
-<div>
-<span class="eyebrow">AI Tools</span>
-<h2>AI գործիքներ աշխատանքի համար</h2>
-<p>
-          Այս բաժինը կարող է օգտագործվել որպես արագ հուշում՝ հասկանալու համար,
-          թե որ AI գործիքն ինչպիսի խնդիրների լուծման համար է առավել հարմար։
-        </p>
-</div>
-</div>
-<div class="tool-grid">
-<article class="tool-card">
-<div class="provider-icon">C</div>
-<h3>Microsoft Copilot</h3>
-<p>Microsoft 365 միջավայր, փաստաթղթեր, հանդիպումներ, email և աշխատանքային productivity։</p>
-</article>
-<article class="tool-card">
-<div class="provider-icon">A</div>
-<h3>Claude</h3>
-<p>Երկար փաստաթղթերի վերլուծություն, կառուցվածքային մտածողություն, writing և research։</p>
-</article>
-<article class="tool-card">
-<div class="provider-icon">G</div>
-<h3>Gemini</h3>
-<p>Google Workspace-ի և Google ecosystem-ի հետ ինտեգրված AI աշխատանքային հոսքեր։</p>
-</article>
-<article class="tool-card">
-<div class="provider-icon">N</div>
-<h3>NotebookLM</h3>
-<p>Փաստաթղթերի, policy-ների և ներքին նյութերի հիման վրա research և summary։</p>
-</article>
-<article class="tool-card">
-<div class="provider-icon">P</div>
-<h3>Perplexity</h3>
-<p>Աղբյուրներով ապահովված արագ web research և համեմատական ուսումնասիրություններ։</p>
-</article>
-<article class="tool-card">
-<div class="provider-icon">D</div>
-<h3>Data &amp; Analytics AI</h3>
-<p>Տվյալների վերլուծություն, insight-ներ, report-ներ և որոշումների աջակցություն։</p>
-</article>
-</div>
-</div>
-</section>
-<section class="section" id="progress">
-<div class="container">
-<div class="section-head">
-<div>
-<span class="eyebrow">Personal Progress</span>
-<h2>Իմ ուսումնական առաջընթացը</h2>
-<p>
-              Նշեք արդեն ավարտած քայլերը։ Տվյալները պահպանվում են միայն ձեր browser-ում
-              և չեն ուղարկվում որևէ արտաքին համակարգ։
-            </p>
-</div>
-</div>
-<div class="progress-wrap">
-<article class="progress-card">
-<h3>Ուսումնական checklist</h3>
-<p>Ավարտելուց հետո նշեք համապատասխան կետը։</p>
-<div aria-label="Ուսուցման առաջընթաց" class="progress-bar">
-<div class="progress-fill" id="progressFill"></div>
-</div>
-<div class="progress-label">
-<span id="progressText">0% ավարտված</span>
-<span id="progressCount">0 / 7</span>
-</div>
-<div class="checklist">
-<label class="check-item">
-<input data-progress="ms-ops" type="checkbox"/>
-<span>Ավարտել AI &amp; Copilot Fundamentals for Operations collection-ը</span>
-</label>
-<label class="check-item">
-<input data-progress="ms-data" type="checkbox"/>
-<span>Ավարտել AI &amp; Copilot Collection for Data Analysts collection-ը</span>
-</label>
-<label class="check-item">
-<input data-progress="claude-101" type="checkbox"/>
-<span>Ավարտել Claude 101 դասընթացը և certification-ը</span>
-</label>
-<label class="check-item">
-<input data-progress="ai-limitations" type="checkbox"/>
-<span>Ավարտել AI Capabilities and Limitations դասընթացը</span>
-</label>
-<label class="check-item">
-<input data-progress="ai-fluency" type="checkbox"/>
-<span>Ավարտել AI Fluency Framework Foundations դասընթացը</span>
-</label>
-<label class="check-item">
-<input data-progress="badges" type="checkbox"/>
-<span>Ներբեռնել կամ պահպանել Microsoft badge-երը</span>
-</label>
-<label class="check-item">
-<input data-progress="send-manager" type="checkbox"/>
-<span>Badge-երն ու certificate-ներն ուղարկել անմիջական ղեկավարին</span>
-</label>
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Required Learning</span>
+          <h2>Պարտադիր ուսումնական ուղղություններ</h2>
+          <p>
+            Ընտրեք ձեր դերին համապատասխան Microsoft collection-ը և ավարտեք
+            բոլոր unit-ները, assessment-ները, badge-երն ու certification-ները։
+          </p>
+        </div>
+        <span class="pill">Mandatory</span>
+      </div>
 
-<label class="check-item">
-<input data-progress="pluralsight-365" type="checkbox"/>
-<span>Ավարտել Microsoft 365 Copilot for Outlook, Teams &amp; OneDrive դասընթացը</span>
-</label>
+      <div class="continue-card">
+        <div>
+          <h3>Continue Learning</h3>
+          <p>Ձեր ընթացիկ ընդհանուր առաջընթացը բոլոր checklist կետերով։</p>
+          <div class="mini-progress"><span id="miniProgress"></span></div>
+        </div>
+        <a class="btn btn-primary" href="#progress">Բացել checklist-ը</a>
+      </div>
 
-<label class="check-item">
-<input data-progress="pluralsight-teams" type="checkbox"/>
-<span>Ավարտել Copilot in Microsoft Teams դասընթացը</span>
-</label>
+      <div class="course-grid searchable-area">
 
-<label class="check-item">
-<input data-progress="datacamp-copilot" type="checkbox"/>
-<span>Ավարտել Working with Microsoft Copilot դասընթացը</span>
-</label>
+        <article class="course-card searchable-item" style="--accent:linear-gradient(90deg,#67a9ff,#70e1d9)">
+          <div class="card-top">
+            <div class="provider">
+              <span class="provider-icon">M</span>
+              Microsoft Learn
+            </div>
+            <span class="pill">Operations</span>
+          </div>
 
-<label class="check-item">
-<input data-progress="linkedin-safe" type="checkbox"/>
-<span>Ավարտել Learning Copilot Chat: Keep Your Data Safe դասընթացը</span>
-</label>
-</div>
-<button class="btn btn-secondary btn-small" id="resetProgress" style="margin-top:16px">
-              Մաքրել առաջընթացը
-            </button>
-</article>
-<aside class="certificate-card">
-<h3>Ավարտման ապացույցներ</h3>
-<p>
-              Յուրաքանչյուր հարթակում ավարտելուց հետո պահպանեք համապատասխան արդյունքը։
-            </p>
-<div class="certificate-list">
-<div class="certificate-item">
-<div class="icon-box">✓</div>
-<div>
-<b>Microsoft Learn Badge</b>
-<small>Յուրաքանչյուր unit/assessment ավարտելուց հետո</small>
-</div>
-</div>
-<div class="certificate-item">
-<div class="icon-box">✓</div>
-<div>
-<b>Anthropic Certificate</b>
-<small>Course-ի ներքևում առկա certification-ը ավարտելուց հետո</small>
-</div>
-</div>
-<div class="certificate-item">
-<div class="icon-box">↗</div>
-<div>
-<b>Ուղարկել ղեկավարին</b>
-<small>Կցել badge-ի screenshot-ը կամ certificate-ի ֆայլը</small>
-</div>
-</div>
-</div>
-<button class="btn btn-primary btn-small" id="copySummary" style="margin-top:18px;width:100%">
-              Պատճենել ավարտման հաղորդագրությունը
-            </button>
-</aside>
-</div>
-</div>
-</section>
-<section class="section" id="faq">
-<div class="container">
-<div class="section-head">
-<div>
-<span class="eyebrow">FAQ</span>
-<h2>Հաճախ տրվող հարցեր</h2>
-</div>
-</div>
-<div class="faq">
-<details>
-<summary>Ո՞ր պրոֆիլով պետք է մուտք գործեմ Microsoft Learn։</summary>
-<p>
-              Օգտագործեք ձեր հիմնական աշխատանքային Microsoft account-ը, որպեսզի
-              collection-ի առաջընթացը և badge-երը պահպանվեն նույն պրոֆիլում։
-            </p>
-</details>
-<details>
-<summary>Արդյո՞ք Microsoft assessment-ը պարտադիր է։</summary>
-<p>
-              Այո։ Յուրաքանչյուր համապատասխան unit-ից հետո ավարտեք assessment-ը,
-              որպեսզի կարողանաք ստանալ badge և հաստատել դասընթացի ավարտը։
-            </p>
-</details>
-<details>
-<summary>Ի՞նչ պետք է անեմ Anthropic course-ից հետո։</summary>
-<p>
-              Անցեք course-ի ներքևում ներկայացված certification-ը, ներբեռնեք կամ
-              պահպանեք certificate-ը և ուղարկեք ձեր անմիջական ղեկավարին։
-            </p>
-</details>
-<details>
-<summary>Կարո՞ղ եմ այս կայքում պահել այլ կայքերի գաղտնաբառերը։</summary>
-<p>
-              Ոչ։ GitHub Pages-ը static և հրապարակային հարթակ է։ Գաղտնաբառերը պետք է
-              պահվեն միայն հաստատված password manager-ում կամ սահմանափակ հասանելիությամբ
-              ներքին համակարգում։
-            </p>
-</details>
-</div>
-</div>
-</section>
+          <h3>AI & Copilot Fundamentals for Operations Department</h3>
+
+          <p>
+            AI-ի և Microsoft Copilot-ի հիմնական հասկացությունները,
+            կիրառման հնարավորությունները և Operations թիմերի համար գործնական օգտագործումը։
+          </p>
+
+          <div class="tags">
+            <span class="tag">AI Fundamentals</span>
+            <span class="tag">Copilot</span>
+            <span class="tag">Operations</span>
+          </div>
+
+          <div class="card-actions">
+            <a class="btn btn-primary btn-small"
+               href="https://learn.microsoft.com/en-us/collections/0n65i1tyn80ewd?&sharingId=B21B0045D64A6A01"
+               target="_blank" rel="noopener noreferrer">
+              Բացել collection-ը
+            </a>
+          </div>
+        </article>
+
+        <article class="course-card searchable-item" style="--accent:linear-gradient(90deg,#a98dff,#67a9ff)">
+          <div class="card-top">
+            <div class="provider">
+              <span class="provider-icon">M</span>
+              Microsoft Learn
+            </div>
+            <span class="pill">Data Analysts</span>
+          </div>
+
+          <h3>AI & Copilot Collection for Data Analysts</h3>
+
+          <p>
+            AI և Copilot գործիքների օգտագործում տվյալների վերլուծության,
+            insight-ների ձևավորման և աշխատանքային գործընթացների արագացման համար։
+          </p>
+
+          <div class="tags">
+            <span class="tag">Data Analytics</span>
+            <span class="tag">Copilot</span>
+            <span class="tag">Productivity</span>
+          </div>
+
+          <div class="card-actions">
+            <a class="btn btn-primary btn-small"
+               href="https://learn.microsoft.com/en-us/collections/zwgybdt04z6mxw?&sharingId=B21B0045D64A6A01"
+               target="_blank" rel="noopener noreferrer">
+              Բացել collection-ը
+            </a>
+          </div>
+        </article>
+
+        <article class="course-card searchable-item" style="--accent:linear-gradient(90deg,#a98dff,#f0c46a)">
+          <div class="card-top">
+            <div class="provider">
+              <span class="provider-icon">A</span>
+              Anthropic Academy
+            </div>
+            <span class="pill">Claude</span>
+          </div>
+
+          <h3>Claude 101</h3>
+
+          <p>
+            Claude-ի հիմնական հնարավորությունները, աշխատանքի սկզբունքները
+            և արդյունավետ կիրառման հիմունքները։
+          </p>
+
+          <div class="tags">
+            <span class="tag">Claude</span>
+            <span class="tag">AI Basics</span>
+            <span class="tag">Certification</span>
+          </div>
+
+          <div class="card-actions">
+            <a class="btn btn-primary btn-small"
+               href="https://anthropic.skilljar.com/claude-101"
+               target="_blank" rel="noopener noreferrer">
+              Սկսել դասընթացը
+            </a>
+          </div>
+        </article>
+
+        <article class="course-card searchable-item" style="--accent:linear-gradient(90deg,#f0c46a,#70e1d9)">
+          <div class="card-top">
+            <div class="provider">
+              <span class="provider-icon">A</span>
+              Anthropic Academy
+            </div>
+            <span class="pill">Responsible AI</span>
+          </div>
+
+          <h3>AI Capabilities and Limitations</h3>
+
+          <p>
+            AI համակարգերի կարողությունները, սահմանափակումները և անվտանգ,
+            պատասխանատու կիրառման սկզբունքները։
+          </p>
+
+          <div class="tags">
+            <span class="tag">Limitations</span>
+            <span class="tag">Safety</span>
+            <span class="tag">Certification</span>
+          </div>
+
+          <div class="card-actions">
+            <a class="btn btn-primary btn-small"
+               href="https://anthropic.skilljar.com/ai-capabilities-and-limitations"
+               target="_blank" rel="noopener noreferrer">
+              Սկսել դասընթացը
+            </a>
+          </div>
+        </article>
+
+        <article class="course-card searchable-item" style="--accent:linear-gradient(90deg,#70e1d9,#6fdaa1)">
+          <div class="card-top">
+            <div class="provider">
+              <span class="provider-icon">A</span>
+              Anthropic Academy
+            </div>
+            <span class="pill">AI Fluency</span>
+          </div>
+
+          <h3>AI Fluency Framework Foundations</h3>
+
+          <p>
+            AI fluency-ի հիմնական շրջանակը և գործնական մոտեցումներ՝
+            AI-ի հետ ավելի արդյունավետ աշխատելու համար։
+          </p>
+
+          <div class="tags">
+            <span class="tag">AI Fluency</span>
+            <span class="tag">Framework</span>
+            <span class="tag">Certification</span>
+          </div>
+
+          <div class="card-actions">
+            <a class="btn btn-primary btn-small"
+               href="https://anthropic.skilljar.com/ai-fluency-framework-foundations"
+               target="_blank" rel="noopener noreferrer">
+              Սկսել դասընթացը
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="featured">
+    <div class="container">
+
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Featured Courses</span>
+          <h2>Նախապես ընտրված դասընթացներ</h2>
+          <p>
+            Արդեն առանձնացված օգտակար դասընթացներ, որպեսզի աշխատակիցները
+            ստիպված չլինեն երկար որոնել տարբեր հարթակներում։
+          </p>
+        </div>
+        <span class="pill">Recommended</span>
+      </div>
+
+      <div class="featured-grid searchable-area">
+
+        <article class="featured-card searchable-item">
+          <span class="platform">Pluralsight</span>
+          <h3>Microsoft 365 Copilot for Outlook, Teams & OneDrive</h3>
+          <p>Copilot-ի կիրառումը Outlook, Teams և OneDrive աշխատանքային միջավայրերում։</p>
+          <a class="btn btn-secondary btn-small"
+             href="https://app.pluralsight.com/id/?redirectTo=/ilx/video-courses/microsoft-365-copilot-outlook-teams-onedrive/course-overview"
+             target="_blank" rel="noopener noreferrer">
+            Բացել դասընթացը
+          </a>
+        </article>
+
+        <article class="featured-card searchable-item">
+          <span class="platform">Pluralsight</span>
+          <h3>Copilot in Microsoft Teams</h3>
+          <p>Teams-ում հանդիպումների, հաղորդակցման և teamwork-ի արդյունավետության բարձրացում։</p>
+          <a class="btn btn-secondary btn-small"
+             href="https://app.pluralsight.com/id/?redirectTo=/ilx/video-courses/copilot-microsoft-teams/course-overview"
+             target="_blank" rel="noopener noreferrer">
+            Բացել դասընթացը
+          </a>
+        </article>
+
+        <article class="featured-card searchable-item">
+          <span class="platform">DataCamp</span>
+          <h3>Working with Microsoft Copilot</h3>
+          <p>Copilot-ի գործնական կիրառում առօրյա աշխատանքային խնդիրների և productivity-ի համար։</p>
+          <a class="btn btn-secondary btn-small"
+             href="https://www.datacamp.com/users/sign_in?redirect=http%3A%2F%2Fapp.datacamp.com%2Flearn%2Fcourses%2Fworking-with-microsoft-copilot"
+             target="_blank" rel="noopener noreferrer">
+            Բացել դասընթացը
+          </a>
+        </article>
+
+        <article class="featured-card searchable-item">
+          <span class="platform">LinkedIn Learning</span>
+          <h3>Learning Copilot Chat: Keep Your Data Safe</h3>
+          <p>Copilot Chat-ի անվտանգ օգտագործում և տվյալների պաշտպանության սկզբունքներ։</p>
+          <a class="btn btn-secondary btn-small"
+             href="https://www.linkedin.com/learning/learning-copilot-chat-basic/keep-your-data-safe-in-copilot-chat"
+             target="_blank" rel="noopener noreferrer">
+            Բացել դասընթացը
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="library">
+    <div class="container">
+
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Knowledge Library</span>
+          <h2>Խորացված ուսումնական գրադարան</h2>
+          <p>
+            Լրացուցիչ դասընթացներ, թեմաներ և learning path-եր՝ ինքնուրույն
+            ավելի խոր ուսումնասիրության համար։
+          </p>
+        </div>
+      </div>
+
+      <div class="library-grid searchable-area">
+        <article class="library-card searchable-item">
+          <div class="provider-icon">A</div>
+          <h3>Anthropic Course Library</h3>
+          <p>
+            Anthropic-ի ամբողջական ուսումնական կատալոգ՝ Claude, AI fluency,
+            AI safety և այլ թեմաներով։
+          </p>
+          <a class="btn btn-secondary btn-small"
+             href="https://anthropic.skilljar.com/"
+             target="_blank" rel="noopener noreferrer">
+            Բացել գրադարանը
+          </a>
+        </article>
+
+        <article class="library-card searchable-item">
+          <div class="provider-icon">M</div>
+          <h3>Microsoft Learn · Copilot Training</h3>
+          <p>
+            Microsoft Learn-ի Copilot և AI ուսումնական կատալոգ՝ module-ներով,
+            դասընթացներով և learning path-երով։
+          </p>
+          <a class="btn btn-secondary btn-small"
+             href="https://learn.microsoft.com/en-us/training/browse/?products=ms-copilot"
+             target="_blank" rel="noopener noreferrer">
+            Բացել գրադարանը
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="access">
+    <div class="container">
+
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Platform Access</span>
+          <h2>Ուսումնական հարթակների մուտքեր</h2>
+          <p>
+            Բոլոր հարթակների login/password տվյալները հավաքված են
+            սահմանափակ հասանելիությամբ SharePoint ֆայլում։
+          </p>
+        </div>
+        <span class="pill">Internal Access</span>
+      </div>
+
+      <article class="access-card">
+        <div class="access-icon">🔐</div>
+        <div>
+          <h3>Learning Platforms Access Directory</h3>
+          <p>
+            Microsoft, Pluralsight, DataCamp, LinkedIn Learning և այլ
+            ուսումնական հարթակների մուտքի տվյալները։
+          </p>
+        </div>
+        <a class="btn btn-primary"
+           href="https://digitainllc.sharepoint.com/:x:/s/PeopleandCulture/Ec9FbYAJU_RPmLOBQk9JNdEB2gveh02gn07S_Z8NAF-HDQ?e=wk1loU"
+           target="_blank" rel="noopener noreferrer">
+          Բացել Access Directory-ը
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">AI Tools</span>
+          <h2>AI գործիքներ աշխատանքի համար</h2>
+          <p>
+            Արագ ուղեցույց՝ հասկանալու համար, թե որ AI գործիքն ինչպիսի խնդիրների
+            լուծման համար է առավել հարմար։
+          </p>
+        </div>
+      </div>
+
+      <div class="tools-grid">
+        <article class="tool-card">
+          <div class="provider-icon">C</div>
+          <h3>Microsoft Copilot</h3>
+          <p>Microsoft 365, email, meetings, documents և productivity workflows։</p>
+        </article>
+
+        <article class="tool-card">
+          <div class="provider-icon">A</div>
+          <h3>Claude</h3>
+          <p>Երկար փաստաթղթեր, writing, analysis և structured thinking։</p>
+        </article>
+
+        <article class="tool-card">
+          <div class="provider-icon">G</div>
+          <h3>Gemini</h3>
+          <p>Google Workspace և Google ecosystem-ի AI workflows։</p>
+        </article>
+
+        <article class="tool-card">
+          <div class="provider-icon">N</div>
+          <h3>NotebookLM</h3>
+          <p>Փաստաթղթերի հիման վրա summaries, research և knowledge work։</p>
+        </article>
+
+        <article class="tool-card">
+          <div class="provider-icon">P</div>
+          <h3>Perplexity</h3>
+          <p>Աղբյուրներով ապահովված web research և արագ համեմատություններ։</p>
+        </article>
+
+        <article class="tool-card">
+          <div class="provider-icon">D</div>
+          <h3>Data & Analytics AI</h3>
+          <p>Insight-ներ, report-ներ, data analysis և որոշումների աջակցություն։</p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="progress">
+    <div class="container">
+
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Personal Progress</span>
+          <h2>Իմ ուսումնական առաջընթացը</h2>
+          <p>
+            Նշեք արդեն ավարտած կետերը։ Տվյալները պահպանվում են միայն ձեր browser-ում։
+          </p>
+        </div>
+      </div>
+
+      <div class="progress-layout">
+
+        <article class="progress-card">
+          <h3>Learning Checklist</h3>
+          <p>Ավարտելուց հետո նշեք համապատասխան կետը։</p>
+
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+
+          <div class="progress-meta">
+            <span id="progressText">0% ավարտված</span>
+            <span id="progressCount">0 / 11</span>
+          </div>
+
+          <div class="checklist">
+            <label class="check-item">
+              <input type="checkbox" data-progress="ms-ops">
+              <span>Ավարտել AI & Copilot Fundamentals for Operations collection-ը</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-progress="ms-data">
+              <span>Ավարտել AI & Copilot Collection for Data Analysts collection-ը</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-progress="claude-101">
+              <span>Ավարտել Claude 101 դասընթացը և certification-ը</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-progress="ai-limitations">
+              <span>Ավարտել AI Capabilities and Limitations դասընթացը</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-progress="ai-fluency">
+              <span>Ավարտել AI Fluency Framework Foundations դասընթացը</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-progress="pluralsight-365">
+              <span>Ավարտել Microsoft 365 Copilot for Outlook, Teams & OneDrive դասընթացը</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-progress="pluralsight-teams">
+              <span>Ավարտել Copilot in Microsoft Teams դասընթացը</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-progress="datacamp">
+              <span>Ավարտել Working with Microsoft Copilot դասընթացը</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-progress="linkedin">
+              <span>Ավարտել Keep Your Data Safe in Copilot Chat դասընթացը</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-progress="badges">
+              <span>Պահպանել Microsoft badge-երը և Anthropic certificate-ները</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" data-progress="manager">
+              <span>Badge-երն ու certificate-ներն ուղարկել անմիջական ղեկավարին</span>
+            </label>
+          </div>
+
+          <button class="btn btn-secondary btn-small" id="resetProgress" style="margin-top:16px">
+            Մաքրել առաջընթացը
+          </button>
+        </article>
+
+        <aside class="certificate-card">
+          <h3>Badges & Certificates</h3>
+          <p>
+            Դասընթացների ավարտից հետո պահպանեք համապատասխան արդյունքը
+            և ուղարկեք ձեր անմիջական ղեկավարին։
+          </p>
+
+          <div class="cert-list">
+            <div class="cert">
+              <i>✓</i>
+              <div>
+                <b>Microsoft Learn Badge</b>
+                <small>Unit-ների և assessment-ների ավարտից հետո</small>
+              </div>
+            </div>
+
+            <div class="cert">
+              <i>✓</i>
+              <div>
+                <b>Anthropic Certificate</b>
+                <small>Course certification-ի ավարտից հետո</small>
+              </div>
+            </div>
+
+            <div class="cert">
+              <i>↗</i>
+              <div>
+                <b>Share with Manager</b>
+                <small>Ուղարկել screenshot-ը կամ certificate file-ը</small>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-small"
+                  id="copySummary"
+                  style="margin-top:18px;width:100%">
+            Պատճենել պատրաստ հաղորդագրությունը
+          </button>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">FAQ</span>
+          <h2>Հաճախ տրվող հարցեր</h2>
+        </div>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Ո՞ր պրոֆիլով պետք է մուտք գործեմ Microsoft Learn։</summary>
+          <p>Օգտագործեք ձեր հիմնական աշխատանքային Microsoft account-ը։</p>
+        </details>
+
+        <details>
+          <summary>Ինչպե՞ս ստանալ Microsoft badge-ը։</summary>
+          <p>Ավարտեք բոլոր unit-ները և համապատասխան assessment-ները։</p>
+        </details>
+
+        <details>
+          <summary>Ինչպե՞ս ստանալ Anthropic certificate-ը։</summary>
+          <p>Դասընթացից հետո ավարտեք course-ի ներքևում ներկայացված certification-ը։</p>
+        </details>
+
+        <details>
+          <summary>Որտե՞ղ գտնել հարթակների login/password տվյալները։</summary>
+          <p>Բացեք Platform Access բաժնի SharePoint Access Directory-ը։</p>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
 </main>
+
 <footer>
-<div class="container footer-row">
-<span>© <span id="year"></span> COO Office AI Learning Hub</span>
-<span>Internal learning navigation portal</span>
-</div>
+  <div class="container footer-row">
+    <span>© <span id="year"></span> COO Office AI Learning Portal</span>
+    <span>Internal learning navigation portal</span>
+  </div>
 </footer>
+
 <div class="toast" id="toast">Պատճենված է</div>
+
 <script>
-    const STORAGE_KEY = "coo-ai-learning-progress-v1";
-    const checkboxes = [...document.querySelectorAll("[data-progress]")];
-    const progressFill = document.getElementById("progressFill");
-    const progressText = document.getElementById("progressText");
-    const progressCount = document.getElementById("progressCount");
-    const resetProgress = document.getElementById("resetProgress");
-    const copySummary = document.getElementById("copySummary");
-    const toast = document.getElementById("toast");
+  const STORAGE_KEY = "coo-ai-learning-progress-v2";
+  const checkboxes = [...document.querySelectorAll("[data-progress]")];
+  const progressFill = document.getElementById("progressFill");
+  const progressText = document.getElementById("progressText");
+  const progressCount = document.getElementById("progressCount");
+  const progressRing = document.getElementById("progressRing");
+  const ringPercent = document.getElementById("ringPercent");
+  const completedStat = document.getElementById("completedStat");
+  const remainingStat = document.getElementById("remainingStat");
+  const miniProgress = document.getElementById("miniProgress");
+  const resetProgress = document.getElementById("resetProgress");
+  const copySummary = document.getElementById("copySummary");
+  const toast = document.getElementById("toast");
+  const courseSearch = document.getElementById("courseSearch");
+  const searchableItems = [...document.querySelectorAll(".searchable-item")];
 
-    function getSavedProgress(){
-      try{
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-      }catch(error){
-        return {};
-      }
+  function loadState(){
+    try{
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    }catch(error){
+      return {};
     }
+  }
 
-    function saveProgress(){
-      const state = {};
-      checkboxes.forEach(box => {
-        state[box.dataset.progress] = box.checked;
-      });
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      updateProgress();
-    }
+  function saveState(){
+    const state = {};
+    checkboxes.forEach(box => state[box.dataset.progress] = box.checked);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    updateProgress();
+  }
 
-    function loadProgress(){
-      const state = getSavedProgress();
-      checkboxes.forEach(box => {
-        box.checked = Boolean(state[box.dataset.progress]);
-      });
-      updateProgress();
-    }
-
-    function updateProgress(){
-      const completed = checkboxes.filter(box => box.checked).length;
-      const total = checkboxes.length;
-      const percent = Math.round((completed / total) * 100);
-
-      progressFill.style.width = percent + "%";
-      progressText.textContent = percent + "% ավարտված";
-      progressCount.textContent = completed + " / " + total;
-    }
-
-    function showToast(message){
-      toast.textContent = message;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 2200);
-    }
-
+  function restoreProgress(){
+    const state = loadState();
     checkboxes.forEach(box => {
-      box.addEventListener("change", saveProgress);
+      box.checked = Boolean(state[box.dataset.progress]);
     });
+    updateProgress();
+  }
 
-    resetProgress.addEventListener("click", () => {
-      checkboxes.forEach(box => box.checked = false);
-      localStorage.removeItem(STORAGE_KEY);
-      updateProgress();
-      showToast("Առաջընթացը մաքրվել է");
-    });
+  function updateProgress(){
+    const total = checkboxes.length;
+    const completed = checkboxes.filter(box => box.checked).length;
+    const remaining = total - completed;
+    const percent = Math.round((completed / total) * 100);
+    const degrees = Math.round((percent / 100) * 360);
 
-    copySummary.addEventListener("click", async () => {
-      const completedItems = checkboxes
-        .filter(box => box.checked)
-        .map(box => "• " + box.closest("label").innerText.trim());
+    progressFill.style.width = percent + "%";
+    miniProgress.style.width = percent + "%";
+    progressText.textContent = percent + "% ավարտված";
+    progressCount.textContent = completed + " / " + total;
+    ringPercent.textContent = percent + "%";
+    completedStat.textContent = completed;
+    remainingStat.textContent = remaining;
 
-      const message =
+    progressRing.style.background =
+      `radial-gradient(circle at center,var(--panel) 54%,transparent 55%),
+       conic-gradient(var(--blue) 0deg,var(--cyan) ${degrees}deg,rgba(255,255,255,.07) ${degrees}deg)`;
+  }
+
+  function showToast(message){
+    toast.textContent = message;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2200);
+  }
+
+  checkboxes.forEach(box => box.addEventListener("change", saveState));
+
+  resetProgress.addEventListener("click", () => {
+    checkboxes.forEach(box => box.checked = false);
+    localStorage.removeItem(STORAGE_KEY);
+    updateProgress();
+    showToast("Առաջընթացը մաքրվել է");
+  });
+
+  copySummary.addEventListener("click", async () => {
+    const completedItems = checkboxes
+      .filter(box => box.checked)
+      .map(box => "• " + box.closest("label").innerText.trim());
+
+    const message =
 `Բարև,
 
 Տեղեկացնում եմ, որ ավարտել եմ COO Office AI Learning Program-ի հետևյալ փուլերը․
@@ -1579,16 +1618,26 @@ ${completedItems.length ? completedItems.join("\n") : "• Դեռ ավարտվա
 
 Շնորհակալություն։`;
 
-      try{
-        await navigator.clipboard.writeText(message);
-        showToast("Հաղորդագրությունը պատճենված է");
-      }catch(error){
-        showToast("Չհաջողվեց պատճենել");
-      }
-    });
+    try{
+      await navigator.clipboard.writeText(message);
+      showToast("Հաղորդագրությունը պատճենված է");
+    }catch(error){
+      showToast("Չհաջողվեց պատճենել");
+    }
+  });
 
-    document.getElementById("year").textContent = new Date().getFullYear();
-    loadProgress();
-  </script>
+  courseSearch.addEventListener("input", () => {
+    const query = courseSearch.value.trim().toLowerCase();
+
+    searchableItems.forEach(item => {
+      const matches = item.innerText.toLowerCase().includes(query);
+      item.classList.toggle("hidden", !matches);
+    });
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  restoreProgress();
+</script>
+
 </body>
 </html>
