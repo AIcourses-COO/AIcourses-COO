@@ -1,12 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="hy">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="COO Office AI Learning Hub" />
-  <title>COO Office AI Learning Hub</title>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="COO Office AI Learning Hub" name="description"/>
+<title>COO Office AI Learning Hub</title>
+<style>
     :root{
       --bg:#07111f;
       --bg-soft:#0b1728;
@@ -770,540 +770,744 @@
         flex:1 1 180px;
       }
     }
-  </style>
+  
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+      margin-top:28px;
+    }
+
+    .stat-card{
+      padding:20px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(255,255,255,.035);
+    }
+
+    .stat-value{
+      display:block;
+      font-size:32px;
+      font-weight:900;
+      line-height:1;
+      margin-bottom:8px;
+    }
+
+    .stat-label{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .quick-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .quick-card{
+      display:flex;
+      flex-direction:column;
+      min-height:250px;
+      padding:22px;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:var(--panel);
+    }
+
+    .quick-card h3{
+      margin:18px 0 8px;
+      font-size:20px;
+    }
+
+    .quick-card p{
+      color:var(--muted);
+      margin:0 0 18px;
+      font-size:14px;
+    }
+
+    .platform-badge{
+      display:inline-flex;
+      width:max-content;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      color:#dbe7f6;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .access-card{
+      display:grid;
+      grid-template-columns:72px 1fr auto;
+      gap:18px;
+      align-items:center;
+      padding:24px;
+      border-radius:24px;
+      border:1px solid rgba(103,213,155,.22);
+      background:
+        linear-gradient(135deg,rgba(103,213,155,.08),rgba(105,167,255,.04)),
+        var(--panel);
+    }
+
+    .access-icon{
+      width:72px;
+      height:72px;
+      border-radius:20px;
+      display:grid;
+      place-items:center;
+      font-size:30px;
+      background:rgba(103,213,155,.12);
+    }
+
+    .access-card h3{
+      margin:0 0 6px;
+      font-size:23px;
+    }
+
+    .access-card p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .tool-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .tool-card{
+      padding:20px;
+      border-radius:20px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.032);
+    }
+
+    .tool-card h3{
+      margin:12px 0 6px;
+      font-size:18px;
+    }
+
+    .tool-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    @media(max-width:980px){
+      .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .access-card{grid-template-columns:64px 1fr}
+      .access-card .btn{grid-column:1/-1}
+    }
+
+    @media(max-width:760px){
+      .stats-grid,
+      .quick-grid,
+      .tool-grid{grid-template-columns:1fr}
+    }
+</style>
 </head>
-
 <body>
-
-  <header class="topbar">
-    <div class="container nav">
-      <a class="brand" href="#top">
-        <span class="brand-mark">AI</span>
-        <span>COO Office Learning Hub</span>
-      </a>
-
-      <nav class="nav-links" aria-label="Գլխավոր նավիգացիա">
-        <a href="#learning-paths">Դասընթացներ</a>
-        <a href="#process">Ինչպես անցնել</a>
-        <a href="#library">Գրադարան</a>
-        <a href="#progress">Իմ առաջընթացը</a>
-        <a href="#faq">ՀՏՀ</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="top">
-
-    <section class="hero">
-      <div class="container hero-grid">
-
-        <div>
-          <span class="eyebrow">COO Office · AI Learning Program</span>
-
-          <h1>
+<header class="topbar">
+<div class="container nav">
+<a class="brand" href="#top">
+<span class="brand-mark">AI</span>
+<span>COO Office Learning Hub</span>
+</a>
+<nav aria-label="Գլխավոր նավիգացիա" class="nav-links"><a href="#dashboard">Dashboard</a><a href="#required">Պարտադիր դասեր</a><a href="#featured">Ընտրված դասեր</a><a href="#library">Գրադարան</a><a href="#access">Մուտքեր</a><a href="#progress">Առաջընթաց</a></nav>
+</div>
+</header>
+<main id="top">
+<section class="hero" id="dashboard">
+<div class="container hero-grid">
+<div>
+<span class="eyebrow">COO Office · AI Learning Program</span>
+<h1>
             Սովորի՛ր AI-ը,
             <span class="gradient-text">կիրառի՛ր աշխատանքում</span>
-          </h1>
-
-          <p class="hero-copy">
+</h1>
+<p class="hero-copy">
             Միասնական կրթական հարթակ COO Office-ի աշխատակիցների համար՝
             Microsoft Copilot, Data Analytics, Claude և AI գործիքների վերաբերյալ
             դասընթացներին, assessment-ներին, badge-երին ու սերտիֆիկատներին արագ հասանելիությամբ։
           </p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#learning-paths">Սկսել ուսուցումը →</a>
+<a class="btn btn-secondary" href="#process">Տեսնել ամբողջ գործընթացը</a>
+</div>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#learning-paths">Սկսել ուսուցումը →</a>
-            <a class="btn btn-secondary" href="#process">Տեսնել ամբողջ գործընթացը</a>
-          </div>
-        </div>
-
-        <aside class="hero-panel">
-          <h3>Ուսուցման ընդհանուր ուղին</h3>
-
-          <div class="flow">
-            <div class="flow-item">
-              <div class="flow-icon">1</div>
-              <div>
-                <strong>Ընտրել դասընթացը</strong>
-                <span>Բացեք համապատասխան collection-ը կամ course-ը։</span>
-              </div>
-            </div>
-
-            <div class="flow-item">
-              <div class="flow-icon">2</div>
-              <div>
-                <strong>Մուտք գործել անձնական պրոֆիլով</strong>
-                <span>Microsoft կամ Anthropic հարթակում օգտագործեք ձեր աշխատանքային հաշիվը։</span>
-              </div>
-            </div>
-
-            <div class="flow-item">
-              <div class="flow-icon">3</div>
-              <div>
-                <strong>Անցնել դասերն ու assessment-ը</strong>
-                <span>Ավարտեք բոլոր unit-ները և համապատասխան ստուգումը։</span>
-              </div>
-            </div>
-
-            <div class="flow-item">
-              <div class="flow-icon">4</div>
-              <div>
-                <strong>Ուղարկել արդյունքը ղեկավարին</strong>
-                <span>Badge-ը կամ certificate-ը ուղարկեք ձեր անմիջական ղեկավարին։</span>
-              </div>
-            </div>
-          </div>
-        </aside>
-
-      </div>
-    </section>
-
-    <section class="section" id="learning-paths">
-      <div class="container">
-
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Microsoft Learning Collections</span>
-            <h2>Հիմնական ուսումնական ուղղություններ</h2>
-            <p>
+<div class="stats-grid">
+<div class="stat-card">
+<span class="stat-value">5</span>
+<span class="stat-label">Պարտադիր ուսումնական ծրագրեր</span>
+</div>
+<div class="stat-card">
+<span class="stat-value">4</span>
+<span class="stat-label">Նախապես ընտրված դասընթացներ</span>
+</div>
+<div class="stat-card">
+<span class="stat-value">2</span>
+<span class="stat-label">Խորացված ուսումնական գրադարաններ</span>
+</div>
+<div class="stat-card">
+<span class="stat-value">1</span>
+<span class="stat-label">Միասնական մուտքերի directory</span>
+</div>
+</div>
+</div>
+<aside class="hero-panel">
+<h3>Ուսուցման ընդհանուր ուղին</h3>
+<div class="flow">
+<div class="flow-item">
+<div class="flow-icon">1</div>
+<div>
+<strong>Ընտրել դասընթացը</strong>
+<span>Բացեք համապատասխան collection-ը կամ course-ը։</span>
+</div>
+</div>
+<div class="flow-item">
+<div class="flow-icon">2</div>
+<div>
+<strong>Մուտք գործել անձնական պրոֆիլով</strong>
+<span>Microsoft կամ Anthropic հարթակում օգտագործեք ձեր աշխատանքային հաշիվը։</span>
+</div>
+</div>
+<div class="flow-item">
+<div class="flow-icon">3</div>
+<div>
+<strong>Անցնել դասերն ու assessment-ը</strong>
+<span>Ավարտեք բոլոր unit-ները և համապատասխան ստուգումը։</span>
+</div>
+</div>
+<div class="flow-item">
+<div class="flow-icon">4</div>
+<div>
+<strong>Ուղարկել արդյունքը ղեկավարին</strong>
+<span>Badge-ը կամ certificate-ը ուղարկեք ձեր անմիջական ղեկավարին։</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</section>
+<section class="section" id="required">
+<div class="container">
+<div class="section-head">
+<div>
+<span class="eyebrow">Microsoft Learning Collections</span>
+<h2>Հիմնական ուսումնական ուղղություններ</h2>
+<p>
               Ընտրեք ձեր դերին համապատասխան collection-ը և Microsoft Learn-ում
               մուտք գործեք ձեր հիմնական աշխատանքային login/password-ով։
             </p>
-          </div>
-
-          <span class="pill">Պարտադիր ուսուցում</span>
-        </div>
-
-        <div class="course-grid">
-
-          <article class="course-card" style="--accent:linear-gradient(90deg,#69a7ff,#65d8df)">
-            <div class="card-top">
-              <div class="provider">
-                <span class="provider-icon">M</span>
+</div>
+<span class="pill">Պարտադիր ուսուցում</span>
+</div>
+<div class="course-grid">
+<article class="course-card" style="--accent:linear-gradient(90deg,#69a7ff,#65d8df)">
+<div class="card-top">
+<div class="provider">
+<span class="provider-icon">M</span>
                 Microsoft Learn
               </div>
-              <span class="level">Operations</span>
-            </div>
-
-            <h3>AI & Copilot Fundamentals for Operations Department</h3>
-
-            <p>
+<span class="level">Operations</span>
+</div>
+<h3>AI &amp; Copilot Fundamentals for Operations Department</h3>
+<p>
               AI-ի և Microsoft Copilot-ի հիմնական հասկացությունները,
               կիրառման հնարավորությունները և գործնական օգտագործումը Operations թիմերի համար։
             </p>
-
-            <div class="tags">
-              <span class="tag">AI Fundamentals</span>
-              <span class="tag">Microsoft Copilot</span>
-              <span class="tag">Operations</span>
-            </div>
-
-            <div class="card-actions">
-              <a class="btn btn-primary btn-small"
-                 href="https://learn.microsoft.com/en-us/collections/0n65i1tyn80ewd?&sharingId=B21B0045D64A6A01"
-                 target="_blank" rel="noopener noreferrer">
+<div class="tags">
+<span class="tag">AI Fundamentals</span>
+<span class="tag">Microsoft Copilot</span>
+<span class="tag">Operations</span>
+</div>
+<div class="card-actions">
+<a class="btn btn-primary btn-small" href="https://learn.microsoft.com/en-us/collections/0n65i1tyn80ewd?&amp;sharingId=B21B0045D64A6A01" rel="noopener noreferrer" target="_blank">
                 Բացել collection-ը
               </a>
-
-              <a class="btn btn-secondary btn-small" href="#process">
+<a class="btn btn-secondary btn-small" href="#process">
                 Տեսնել քայլերը
               </a>
-            </div>
-          </article>
-
-          <article class="course-card" style="--accent:linear-gradient(90deg,#a98cff,#69a7ff)">
-            <div class="card-top">
-              <div class="provider">
-                <span class="provider-icon">M</span>
+</div>
+</article>
+<article class="course-card" style="--accent:linear-gradient(90deg,#a98cff,#69a7ff)">
+<div class="card-top">
+<div class="provider">
+<span class="provider-icon">M</span>
                 Microsoft Learn
               </div>
-              <span class="level">Data Analysts</span>
-            </div>
-
-            <h3>AI & Copilot Collection for Data Analysts</h3>
-
-            <p>
+<span class="level">Data Analysts</span>
+</div>
+<h3>AI &amp; Copilot Collection for Data Analysts</h3>
+<p>
               AI և Copilot գործիքների օգտագործում տվյալների վերլուծության,
               insight-ների ձևավորման և աշխատանքային գործընթացների արագացման համար։
             </p>
-
-            <div class="tags">
-              <span class="tag">Data Analytics</span>
-              <span class="tag">Copilot</span>
-              <span class="tag">AI Productivity</span>
-            </div>
-
-            <div class="card-actions">
-              <a class="btn btn-primary btn-small"
-                 href="https://learn.microsoft.com/en-us/collections/zwgybdt04z6mxw?&sharingId=B21B0045D64A6A01"
-                 target="_blank" rel="noopener noreferrer">
+<div class="tags">
+<span class="tag">Data Analytics</span>
+<span class="tag">Copilot</span>
+<span class="tag">AI Productivity</span>
+</div>
+<div class="card-actions">
+<a class="btn btn-primary btn-small" href="https://learn.microsoft.com/en-us/collections/zwgybdt04z6mxw?&amp;sharingId=B21B0045D64A6A01" rel="noopener noreferrer" target="_blank">
                 Բացել collection-ը
               </a>
-
-              <a class="btn btn-secondary btn-small" href="#process">
+<a class="btn btn-secondary btn-small" href="#process">
                 Տեսնել քայլերը
               </a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Anthropic Academy</span>
-            <h2>Claude ուսումնական դասընթացներ</h2>
-            <p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<div class="section-head">
+<div>
+<span class="eyebrow">Anthropic Academy</span>
+<h2>Claude ուսումնական դասընթացներ</h2>
+<p>
               Դասընթացներն անցնելուց հետո պարտադիր ավարտեք course-ի ներքևում ներկայացված
               certification-ը և ստացված certificate-ը ուղարկեք ձեր ղեկավարին։
             </p>
-          </div>
-
-          <span class="pill">Certificate required</span>
-        </div>
-
-        <div class="anthropic-grid">
-
-          <article class="mini-course">
-            <div class="number">01</div>
-            <h3>Claude 101</h3>
-            <p>
+</div>
+<span class="pill">Certificate required</span>
+</div>
+<div class="anthropic-grid">
+<article class="mini-course">
+<div class="number">01</div>
+<h3>Claude 101</h3>
+<p>
               Claude-ի հիմնական հնարավորությունները, աշխատանքի սկզբունքներն ու
               կիրառման հիմունքները։
             </p>
-            <a class="btn btn-primary btn-small"
-               href="https://anthropic.skilljar.com/claude-101"
-               target="_blank" rel="noopener noreferrer">
+<a class="btn btn-primary btn-small" href="https://anthropic.skilljar.com/claude-101" rel="noopener noreferrer" target="_blank">
               Սկսել դասընթացը
             </a>
-          </article>
-
-          <article class="mini-course">
-            <div class="number">02</div>
-            <h3>AI Capabilities and Limitations</h3>
-            <p>
+</article>
+<article class="mini-course">
+<div class="number">02</div>
+<h3>AI Capabilities and Limitations</h3>
+<p>
               AI համակարգերի կարողությունները, սահմանափակումները և անվտանգ,
               պատասխանատու կիրառման սկզբունքները։
             </p>
-            <a class="btn btn-primary btn-small"
-               href="https://anthropic.skilljar.com/ai-capabilities-and-limitations"
-               target="_blank" rel="noopener noreferrer">
+<a class="btn btn-primary btn-small" href="https://anthropic.skilljar.com/ai-capabilities-and-limitations" rel="noopener noreferrer" target="_blank">
               Սկսել դասընթացը
             </a>
-          </article>
-
-          <article class="mini-course">
-            <div class="number">03</div>
-            <h3>AI Fluency Framework Foundations</h3>
-            <p>
+</article>
+<article class="mini-course">
+<div class="number">03</div>
+<h3>AI Fluency Framework Foundations</h3>
+<p>
               AI fluency-ի հիմնական շրջանակը և գործնական մոտեցումներ՝
               AI-ի հետ ավելի արդյունավետ աշխատելու համար։
             </p>
-            <a class="btn btn-primary btn-small"
-               href="https://anthropic.skilljar.com/ai-fluency-framework-foundations"
-               target="_blank" rel="noopener noreferrer">
+<a class="btn btn-primary btn-small" href="https://anthropic.skilljar.com/ai-fluency-framework-foundations" rel="noopener noreferrer" target="_blank">
               Սկսել դասընթացը
             </a>
-          </article>
+</article>
+</div>
+</div>
+</section>
 
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="process">
-      <div class="container">
-
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Learning Process</span>
-            <h2>Ինչպես անցնել դասընթացները</h2>
-            <p>
+<section class="section" id="featured">
+<div class="container">
+<div class="section-head">
+<div>
+<span class="eyebrow">Featured Courses</span>
+<h2>Նախապես ընտրված օգտակար դասընթացներ</h2>
+<p>
+          Այս դասընթացներն արդեն առանձնացված են COO Office-ի աշխատակիցների համար,
+          որպեսզի անհրաժեշտ չլինի երկար որոնել տարբեր ուսումնական հարթակներում։
+        </p>
+</div>
+<span class="pill">Recommended</span>
+</div>
+<div class="quick-grid">
+<article class="quick-card">
+<span class="platform-badge">Pluralsight</span>
+<h3>Microsoft 365 Copilot for Outlook, Teams &amp; OneDrive</h3>
+<p>
+          Գործնական դասընթաց Microsoft 365 Copilot-ի օգտագործման վերաբերյալ՝
+          Outlook, Teams և OneDrive միջավայրերում։
+        </p>
+<a class="btn btn-primary btn-small" href="https://app.pluralsight.com/id/?redirectTo=/ilx/video-courses/microsoft-365-copilot-outlook-teams-onedrive/course-overview" rel="noopener noreferrer" target="_blank">
+          Բացել դասընթացը
+        </a>
+</article>
+<article class="quick-card">
+<span class="platform-badge">Pluralsight</span>
+<h3>Copilot in Microsoft Teams</h3>
+<p>
+          Copilot-ի գործնական կիրառումը Microsoft Teams-ում՝ հանդիպումների,
+          հաղորդակցման և թիմային աշխատանքի արդյունավետությունը բարձրացնելու համար։
+        </p>
+<a class="btn btn-primary btn-small" href="https://app.pluralsight.com/id/?redirectTo=/ilx/video-courses/copilot-microsoft-teams/course-overview" rel="noopener noreferrer" target="_blank">
+          Բացել դասընթացը
+        </a>
+</article>
+<article class="quick-card">
+<span class="platform-badge">DataCamp</span>
+<h3>Working with Microsoft Copilot</h3>
+<p>
+          Microsoft Copilot-ի կիրառումը առօրյա աշխատանքային խնդիրների,
+          տվյալների և արտադրողականության բարելավման համար։
+        </p>
+<a class="btn btn-primary btn-small" href="https://www.datacamp.com/users/sign_in?redirect=http%3A%2F%2Fapp.datacamp.com%2Flearn%2Fcourses%2Fworking-with-microsoft-copilot" rel="noopener noreferrer" target="_blank">
+          Բացել դասընթացը
+        </a>
+</article>
+<article class="quick-card">
+<span class="platform-badge">LinkedIn Learning</span>
+<h3>Learning Copilot Chat: Keep Your Data Safe</h3>
+<p>
+          Copilot Chat-ի անվտանգ օգտագործում, տվյալների պաշտպանություն
+          և պատասխանատու աշխատանք AI գործիքների հետ։
+        </p>
+<a class="btn btn-primary btn-small" href="https://www.linkedin.com/learning/learning-copilot-chat-basic/keep-your-data-safe-in-copilot-chat" rel="noopener noreferrer" target="_blank">
+          Բացել դասընթացը
+        </a>
+</article>
+</div>
+</div>
+</section>
+<section class="section" id="process">
+<div class="container">
+<div class="section-head">
+<div>
+<span class="eyebrow">Learning Process</span>
+<h2>Ինչպես անցնել դասընթացները</h2>
+<p>
               Պահպանեք ներկայացված հերթականությունը, որպեսզի ձեր ուսուցումն ու
               ստացված արդյունքները լինեն ամբողջական և տեսանելի։
             </p>
-          </div>
-        </div>
-
-        <div class="steps">
-
-          <article class="step">
-            <div class="step-number">1</div>
-            <h3>Բացել հղումը</h3>
-            <p>
+</div>
+</div>
+<div class="steps">
+<article class="step">
+<div class="step-number">1</div>
+<h3>Բացել հղումը</h3>
+<p>
               Ընտրեք ձեր դերին համապատասխան Microsoft collection-ը կամ Anthropic course-ը։
             </p>
-          </article>
-
-          <article class="step">
-            <div class="step-number">2</div>
-            <h3>Մուտք գործել</h3>
-            <p>
+</article>
+<article class="step">
+<div class="step-number">2</div>
+<h3>Մուտք գործել</h3>
+<p>
               Գրանցվեք կամ մուտք գործեք ձեր աշխատանքային կամ անձնական պրոֆիլով՝
               ըստ հարթակի պահանջի։
             </p>
-          </article>
-
-          <article class="step">
-            <div class="step-number">3</div>
-            <h3>Ավարտել ուսուցումը</h3>
-            <p>
+</article>
+<article class="step">
+<div class="step-number">3</div>
+<h3>Ավարտել ուսուցումը</h3>
+<p>
               Անցեք բոլոր module-ները և unit-ները հերթականությամբ՝ չբաց թողնելով առաջադրանքները։
             </p>
-          </article>
-
-          <article class="step">
-            <div class="step-number">4</div>
-            <h3>Ստանալ ապացույցը</h3>
-            <p>
+</article>
+<article class="step">
+<div class="step-number">4</div>
+<h3>Ստանալ ապացույցը</h3>
+<p>
               Microsoft-ում ստացեք badge, Anthropic-ում՝ certificate, ապա ուղարկեք ղեկավարին։
             </p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="library">
-      <div class="container">
-
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Knowledge Library</span>
-            <h2>Լրացուցիչ ուսումնական գրադարան</h2>
-            <p>
+</article>
+</div>
+</div>
+</section>
+<section class="section" id="library">
+<div class="container">
+<div class="section-head">
+<div>
+<span class="eyebrow">Knowledge Library</span>
+<h2>Լրացուցիչ ուսումնական գրադարան</h2>
+<p>
               Օգտագործեք այս հղումները՝ լրացուցիչ թեմաներ ուսումնասիրելու և
               ձեր հետաքրքրություններին համապատասխան նոր դասընթացներ գտնելու համար։
             </p>
-          </div>
-
-          <span class="pill">Self-development</span>
-        </div>
-
-        <div class="library-grid">
-
-          <article class="library-card">
-            <div class="library-icon">A</div>
-            <h3>Anthropic Course Library</h3>
-            <p>
+</div>
+<span class="pill">Self-development</span>
+</div>
+<div class="library-grid">
+<article class="library-card">
+<div class="library-icon">A</div>
+<h3>Anthropic Course Library</h3>
+<p>
               Anthropic-ի ամբողջական ուսումնական կատալոգ՝ Claude, AI fluency,
               անվտանգություն և AI կիրառման տարբեր թեմաներով։
             </p>
-
-            <a class="btn btn-secondary btn-small"
-               href="https://anthropic.skilljar.com/"
-               target="_blank" rel="noopener noreferrer">
+<a class="btn btn-secondary btn-small" href="https://anthropic.skilljar.com/" rel="noopener noreferrer" target="_blank">
               Բացել գրադարանը
             </a>
-          </article>
-
-          <article class="library-card">
-            <div class="library-icon">M</div>
-            <h3>Microsoft Learn · Copilot Training</h3>
-            <p>
+</article>
+<article class="library-card">
+<div class="library-icon">M</div>
+<h3>Microsoft Learn · Copilot Training</h3>
+<p>
               Microsoft Learn-ի ուսումնական կատալոգ՝ Copilot և AI թեմաներով
               դասընթացներ, module-ներ և learning path-եր գտնելու համար։
             </p>
-
-            <a class="btn btn-secondary btn-small"
-               href="https://learn.microsoft.com/en-us/training/browse/?products=ms-copilot"
-               target="_blank" rel="noopener noreferrer">
+<a class="btn btn-secondary btn-small" href="https://learn.microsoft.com/en-us/training/browse/?products=ms-copilot" rel="noopener noreferrer" target="_blank">
               Բացել գրադարանը
             </a>
-          </article>
-
-        </div>
-
-        <div class="warning">
-          <strong>Անվտանգության կարևոր նշում.</strong>
+</article>
+</div>
+<div class="warning">
+<strong>Անվտանգության կարևոր նշում.</strong>
           կայքերի login/password-ները մի՛ տեղադրեք GitHub Pages-ի HTML կոդում։
           Static կայքի ամբողջ կոդը հասանելի է ցանկացած այցելուի և կարող է դիտվել browser-ի
           source code-ից։ Գաղտնաբառերի համար օգտագործեք ընկերության password manager-ը,
           Microsoft SharePoint-ի սահմանափակ հասանելիությամբ էջ կամ ներքին secure portal։
         </div>
-      </div>
-    </section>
+</div>
+</section>
+<section class="section" id="access">
+<div class="container">
+<div class="section-head">
+<div>
+<span class="eyebrow">Platform Access</span>
+<h2>Ուսումնական հարթակների մուտքի տվյալներ</h2>
+<p>
+          Բոլոր ուսումնական հարթակների login/password տվյալները հավաքված են
+          սահմանափակ հասանելիությամբ SharePoint ֆայլում։
+        </p>
+</div>
+<span class="pill">Internal access</span>
+</div>
+<article class="access-card">
+<div class="access-icon">🔐</div>
+<div>
+<h3>Learning Platforms Access Directory</h3>
+<p>
+          Microsoft, Pluralsight, DataCamp, LinkedIn Learning և այլ հարթակների
+          մուտքի տվյալները տեսնելու համար բացեք ներքին SharePoint ֆայլը։
+        </p>
+</div>
+<a class="btn btn-primary" href="https://digitainllc.sharepoint.com/:x:/s/PeopleandCulture/Ec9FbYAJU_RPmLOBQk9JNdEB2gveh02gn07S_Z8NAF-HDQ?e=wk1loU" rel="noopener noreferrer" target="_blank">
+        Բացել Access Directory-ը
+      </a>
+</article>
+<div class="warning">
+<strong>Ուշադրություն.</strong>
+      այս ֆայլը նախատեսված է միայն ներքին օգտագործման համար։
+      Մի փոխանցեք login/password տվյալները երրորդ անձանց և մի պահեք դրանք անձնական սարքերում։
+    </div>
+</div>
+</section>
 
-    <section class="section" id="progress">
-      <div class="container">
 
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Personal Progress</span>
-            <h2>Իմ ուսումնական առաջընթացը</h2>
-            <p>
+<section class="section" id="tools">
+<div class="container">
+<div class="section-head">
+<div>
+<span class="eyebrow">AI Tools</span>
+<h2>AI գործիքներ աշխատանքի համար</h2>
+<p>
+          Այս բաժինը կարող է օգտագործվել որպես արագ հուշում՝ հասկանալու համար,
+          թե որ AI գործիքն ինչպիսի խնդիրների լուծման համար է առավել հարմար։
+        </p>
+</div>
+</div>
+<div class="tool-grid">
+<article class="tool-card">
+<div class="provider-icon">C</div>
+<h3>Microsoft Copilot</h3>
+<p>Microsoft 365 միջավայր, փաստաթղթեր, հանդիպումներ, email և աշխատանքային productivity։</p>
+</article>
+<article class="tool-card">
+<div class="provider-icon">A</div>
+<h3>Claude</h3>
+<p>Երկար փաստաթղթերի վերլուծություն, կառուցվածքային մտածողություն, writing և research։</p>
+</article>
+<article class="tool-card">
+<div class="provider-icon">G</div>
+<h3>Gemini</h3>
+<p>Google Workspace-ի և Google ecosystem-ի հետ ինտեգրված AI աշխատանքային հոսքեր։</p>
+</article>
+<article class="tool-card">
+<div class="provider-icon">N</div>
+<h3>NotebookLM</h3>
+<p>Փաստաթղթերի, policy-ների և ներքին նյութերի հիման վրա research և summary։</p>
+</article>
+<article class="tool-card">
+<div class="provider-icon">P</div>
+<h3>Perplexity</h3>
+<p>Աղբյուրներով ապահովված արագ web research և համեմատական ուսումնասիրություններ։</p>
+</article>
+<article class="tool-card">
+<div class="provider-icon">D</div>
+<h3>Data &amp; Analytics AI</h3>
+<p>Տվյալների վերլուծություն, insight-ներ, report-ներ և որոշումների աջակցություն։</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section" id="progress">
+<div class="container">
+<div class="section-head">
+<div>
+<span class="eyebrow">Personal Progress</span>
+<h2>Իմ ուսումնական առաջընթացը</h2>
+<p>
               Նշեք արդեն ավարտած քայլերը։ Տվյալները պահպանվում են միայն ձեր browser-ում
               և չեն ուղարկվում որևէ արտաքին համակարգ։
             </p>
-          </div>
-        </div>
+</div>
+</div>
+<div class="progress-wrap">
+<article class="progress-card">
+<h3>Ուսումնական checklist</h3>
+<p>Ավարտելուց հետո նշեք համապատասխան կետը։</p>
+<div aria-label="Ուսուցման առաջընթաց" class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+<div class="progress-label">
+<span id="progressText">0% ավարտված</span>
+<span id="progressCount">0 / 7</span>
+</div>
+<div class="checklist">
+<label class="check-item">
+<input data-progress="ms-ops" type="checkbox"/>
+<span>Ավարտել AI &amp; Copilot Fundamentals for Operations collection-ը</span>
+</label>
+<label class="check-item">
+<input data-progress="ms-data" type="checkbox"/>
+<span>Ավարտել AI &amp; Copilot Collection for Data Analysts collection-ը</span>
+</label>
+<label class="check-item">
+<input data-progress="claude-101" type="checkbox"/>
+<span>Ավարտել Claude 101 դասընթացը և certification-ը</span>
+</label>
+<label class="check-item">
+<input data-progress="ai-limitations" type="checkbox"/>
+<span>Ավարտել AI Capabilities and Limitations դասընթացը</span>
+</label>
+<label class="check-item">
+<input data-progress="ai-fluency" type="checkbox"/>
+<span>Ավարտել AI Fluency Framework Foundations դասընթացը</span>
+</label>
+<label class="check-item">
+<input data-progress="badges" type="checkbox"/>
+<span>Ներբեռնել կամ պահպանել Microsoft badge-երը</span>
+</label>
+<label class="check-item">
+<input data-progress="send-manager" type="checkbox"/>
+<span>Badge-երն ու certificate-ներն ուղարկել անմիջական ղեկավարին</span>
+</label>
 
-        <div class="progress-wrap">
+<label class="check-item">
+<input data-progress="pluralsight-365" type="checkbox"/>
+<span>Ավարտել Microsoft 365 Copilot for Outlook, Teams &amp; OneDrive դասընթացը</span>
+</label>
 
-          <article class="progress-card">
-            <h3>Ուսումնական checklist</h3>
-            <p>Ավարտելուց հետո նշեք համապատասխան կետը։</p>
+<label class="check-item">
+<input data-progress="pluralsight-teams" type="checkbox"/>
+<span>Ավարտել Copilot in Microsoft Teams դասընթացը</span>
+</label>
 
-            <div class="progress-bar" aria-label="Ուսուցման առաջընթաց">
-              <div class="progress-fill" id="progressFill"></div>
-            </div>
+<label class="check-item">
+<input data-progress="datacamp-copilot" type="checkbox"/>
+<span>Ավարտել Working with Microsoft Copilot դասընթացը</span>
+</label>
 
-            <div class="progress-label">
-              <span id="progressText">0% ավարտված</span>
-              <span id="progressCount">0 / 7</span>
-            </div>
-
-            <div class="checklist">
-              <label class="check-item">
-                <input type="checkbox" data-progress="ms-ops" />
-                <span>Ավարտել AI & Copilot Fundamentals for Operations collection-ը</span>
-              </label>
-
-              <label class="check-item">
-                <input type="checkbox" data-progress="ms-data" />
-                <span>Ավարտել AI & Copilot Collection for Data Analysts collection-ը</span>
-              </label>
-
-              <label class="check-item">
-                <input type="checkbox" data-progress="claude-101" />
-                <span>Ավարտել Claude 101 դասընթացը և certification-ը</span>
-              </label>
-
-              <label class="check-item">
-                <input type="checkbox" data-progress="ai-limitations" />
-                <span>Ավարտել AI Capabilities and Limitations դասընթացը</span>
-              </label>
-
-              <label class="check-item">
-                <input type="checkbox" data-progress="ai-fluency" />
-                <span>Ավարտել AI Fluency Framework Foundations դասընթացը</span>
-              </label>
-
-              <label class="check-item">
-                <input type="checkbox" data-progress="badges" />
-                <span>Ներբեռնել կամ պահպանել Microsoft badge-երը</span>
-              </label>
-
-              <label class="check-item">
-                <input type="checkbox" data-progress="send-manager" />
-                <span>Badge-երն ու certificate-ներն ուղարկել անմիջական ղեկավարին</span>
-              </label>
-            </div>
-
-            <button class="btn btn-secondary btn-small" id="resetProgress" style="margin-top:16px">
+<label class="check-item">
+<input data-progress="linkedin-safe" type="checkbox"/>
+<span>Ավարտել Learning Copilot Chat: Keep Your Data Safe դասընթացը</span>
+</label>
+</div>
+<button class="btn btn-secondary btn-small" id="resetProgress" style="margin-top:16px">
               Մաքրել առաջընթացը
             </button>
-          </article>
-
-          <aside class="certificate-card">
-            <h3>Ավարտման ապացույցներ</h3>
-            <p>
+</article>
+<aside class="certificate-card">
+<h3>Ավարտման ապացույցներ</h3>
+<p>
               Յուրաքանչյուր հարթակում ավարտելուց հետո պահպանեք համապատասխան արդյունքը։
             </p>
-
-            <div class="certificate-list">
-
-              <div class="certificate-item">
-                <div class="icon-box">✓</div>
-                <div>
-                  <b>Microsoft Learn Badge</b>
-                  <small>Յուրաքանչյուր unit/assessment ավարտելուց հետո</small>
-                </div>
-              </div>
-
-              <div class="certificate-item">
-                <div class="icon-box">✓</div>
-                <div>
-                  <b>Anthropic Certificate</b>
-                  <small>Course-ի ներքևում առկա certification-ը ավարտելուց հետո</small>
-                </div>
-              </div>
-
-              <div class="certificate-item">
-                <div class="icon-box">↗</div>
-                <div>
-                  <b>Ուղարկել ղեկավարին</b>
-                  <small>Կցել badge-ի screenshot-ը կամ certificate-ի ֆայլը</small>
-                </div>
-              </div>
-
-            </div>
-
-            <button class="btn btn-primary btn-small"
-                    id="copySummary"
-                    style="margin-top:18px;width:100%">
+<div class="certificate-list">
+<div class="certificate-item">
+<div class="icon-box">✓</div>
+<div>
+<b>Microsoft Learn Badge</b>
+<small>Յուրաքանչյուր unit/assessment ավարտելուց հետո</small>
+</div>
+</div>
+<div class="certificate-item">
+<div class="icon-box">✓</div>
+<div>
+<b>Anthropic Certificate</b>
+<small>Course-ի ներքևում առկա certification-ը ավարտելուց հետո</small>
+</div>
+</div>
+<div class="certificate-item">
+<div class="icon-box">↗</div>
+<div>
+<b>Ուղարկել ղեկավարին</b>
+<small>Կցել badge-ի screenshot-ը կամ certificate-ի ֆայլը</small>
+</div>
+</div>
+</div>
+<button class="btn btn-primary btn-small" id="copySummary" style="margin-top:18px;width:100%">
               Պատճենել ավարտման հաղորդագրությունը
             </button>
-          </aside>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container">
-
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">FAQ</span>
-            <h2>Հաճախ տրվող հարցեր</h2>
-          </div>
-        </div>
-
-        <div class="faq">
-
-          <details>
-            <summary>Ո՞ր պրոֆիլով պետք է մուտք գործեմ Microsoft Learn։</summary>
-            <p>
+</aside>
+</div>
+</div>
+</section>
+<section class="section" id="faq">
+<div class="container">
+<div class="section-head">
+<div>
+<span class="eyebrow">FAQ</span>
+<h2>Հաճախ տրվող հարցեր</h2>
+</div>
+</div>
+<div class="faq">
+<details>
+<summary>Ո՞ր պրոֆիլով պետք է մուտք գործեմ Microsoft Learn։</summary>
+<p>
               Օգտագործեք ձեր հիմնական աշխատանքային Microsoft account-ը, որպեսզի
               collection-ի առաջընթացը և badge-երը պահպանվեն նույն պրոֆիլում։
             </p>
-          </details>
-
-          <details>
-            <summary>Արդյո՞ք Microsoft assessment-ը պարտադիր է։</summary>
-            <p>
+</details>
+<details>
+<summary>Արդյո՞ք Microsoft assessment-ը պարտադիր է։</summary>
+<p>
               Այո։ Յուրաքանչյուր համապատասխան unit-ից հետո ավարտեք assessment-ը,
               որպեսզի կարողանաք ստանալ badge և հաստատել դասընթացի ավարտը։
             </p>
-          </details>
-
-          <details>
-            <summary>Ի՞նչ պետք է անեմ Anthropic course-ից հետո։</summary>
-            <p>
+</details>
+<details>
+<summary>Ի՞նչ պետք է անեմ Anthropic course-ից հետո։</summary>
+<p>
               Անցեք course-ի ներքևում ներկայացված certification-ը, ներբեռնեք կամ
               պահպանեք certificate-ը և ուղարկեք ձեր անմիջական ղեկավարին։
             </p>
-          </details>
-
-          <details>
-            <summary>Կարո՞ղ եմ այս կայքում պահել այլ կայքերի գաղտնաբառերը։</summary>
-            <p>
+</details>
+<details>
+<summary>Կարո՞ղ եմ այս կայքում պահել այլ կայքերի գաղտնաբառերը։</summary>
+<p>
               Ոչ։ GitHub Pages-ը static և հրապարակային հարթակ է։ Գաղտնաբառերը պետք է
               պահվեն միայն հաստատված password manager-ում կամ սահմանափակ հասանելիությամբ
               ներքին համակարգում։
             </p>
-          </details>
-
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container footer-row">
-      <span>© <span id="year"></span> COO Office AI Learning Hub</span>
-      <span>Internal learning navigation portal</span>
-    </div>
-  </footer>
-
-  <div class="toast" id="toast">Պատճենված է</div>
-
-  <script>
+</details>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="container footer-row">
+<span>© <span id="year"></span> COO Office AI Learning Hub</span>
+<span>Internal learning navigation portal</span>
+</div>
+</footer>
+<div class="toast" id="toast">Պատճենված է</div>
+<script>
     const STORAGE_KEY = "coo-ai-learning-progress-v1";
     const checkboxes = [...document.querySelectorAll("[data-progress]")];
     const progressFill = document.getElementById("progressFill");
@@ -1392,6 +1596,5 @@ ${completedItems.length ? completedItems.join("\n") : "• Դեռ ավարտվա
     document.getElementById("year").textContent = new Date().getFullYear();
     loadProgress();
   </script>
-
 </body>
 </html>
