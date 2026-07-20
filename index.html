@@ -856,33 +856,54 @@
       .card-actions .btn{width:auto;flex:1 1 180px}
       .access-card{grid-template-columns:1fr}
     }
-  
+
     .announcement{
       margin-top:24px;
       display:grid;
-      grid-template-columns:1fr 250px;
+      grid-template-columns:minmax(0,1fr) 250px;
       gap:24px;
       align-items:stretch;
-      padding:30px;
+      padding:32px;
       border-radius:28px;
-      background:
-        radial-gradient(circle at 10% 10%,rgba(255,255,255,.12),transparent 28%),
-        linear-gradient(135deg,#1657d8,#2443a6 58%,#392f8f);
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow:0 24px 60px rgba(37,99,235,.28);
-      overflow:hidden;
       position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.09);
+      background:
+        radial-gradient(circle at 5% 0%,rgba(103,169,255,.12),transparent 28%),
+        radial-gradient(circle at 96% 100%,rgba(169,141,255,.10),transparent 25%),
+        linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+      box-shadow:0 24px 70px rgba(0,0,0,.34);
+      backdrop-filter:blur(22px);
+    }
+
+    .announcement::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:3px;
+      background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple));
     }
 
     .announcement::after{
       content:"";
       position:absolute;
-      width:260px;
-      height:260px;
+      width:300px;
+      height:300px;
+      right:-150px;
+      bottom:-170px;
       border-radius:50%;
-      right:-120px;
-      bottom:-140px;
-      background:radial-gradient(circle,rgba(112,225,217,.28),transparent 70%);
+      background:radial-gradient(circle,rgba(112,225,217,.15),transparent 70%);
+      pointer-events:none;
+    }
+
+    .announcement-content{
+      position:relative;
+      z-index:1;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
     }
 
     .announcement-badge{
@@ -891,34 +912,48 @@
       gap:9px;
       width:max-content;
       padding:8px 13px;
+      margin-bottom:17px;
       border-radius:999px;
-      background:rgba(255,255,255,.13);
-      border:1px solid rgba(255,255,255,.15);
+      border:1px solid rgba(103,169,255,.25);
+      background:rgba(103,169,255,.08);
+      color:#d7e7ff;
       font-size:12px;
       font-weight:900;
       letter-spacing:.7px;
       text-transform:uppercase;
-      margin-bottom:17px;
     }
 
     .announcement h2{
-      margin:0 0 14px;
+      margin:0;
       font-size:clamp(28px,4vw,42px);
       line-height:1.15;
-      letter-spacing:-1px;
+      letter-spacing:-1.2px;
     }
 
-    .announcement p{
-      margin:0;
-      max-width:860px;
+    .announcement-message{
+      margin-top:19px;
+      max-width:900px;
+      color:var(--muted);
       font-size:17px;
-      line-height:1.8;
-      color:rgba(255,255,255,.92);
+      line-height:1.85;
+    }
+
+    .announcement-message p{
+      margin:0;
+    }
+
+    .announcement-message p + p{
+      margin-top:11px;
+    }
+
+    .announcement-message strong{
+      color:var(--text);
     }
 
     .deadline-card{
       position:relative;
       z-index:1;
+      min-height:255px;
       padding:24px 18px;
       border-radius:22px;
       display:flex;
@@ -926,41 +961,61 @@
       align-items:center;
       justify-content:center;
       text-align:center;
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.18);
-      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.09);
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+      backdrop-filter:blur(20px);
+      box-shadow:
+        0 18px 45px rgba(0,0,0,.30),
+        inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .deadline-icon{
+      width:48px;
+      height:48px;
+      display:grid;
+      place-items:center;
+      margin-bottom:14px;
+      border-radius:14px;
+      border:1px solid rgba(103,169,255,.20);
+      background:rgba(103,169,255,.09);
+      font-size:22px;
     }
 
     .deadline-label{
-      text-transform:uppercase;
-      letter-spacing:2px;
+      color:var(--muted);
       font-size:12px;
-      opacity:.85;
       font-weight:800;
+      letter-spacing:2px;
+      text-transform:uppercase;
     }
 
     .deadline-day{
+      margin-top:8px;
+      color:#fff;
       font-size:68px;
       line-height:1;
       font-weight:950;
-      margin-top:10px;
     }
 
     .deadline-month{
-      font-size:23px;
-      font-weight:900;
       margin-top:8px;
+      font-size:22px;
+      font-weight:900;
+      letter-spacing:.5px;
     }
 
     .countdown{
-      margin-top:14px;
-      padding:8px 11px;
+      margin-top:18px;
+      padding:10px 18px;
       border-radius:999px;
-      background:rgba(0,0,0,.18);
-      border:1px solid rgba(255,255,255,.12);
-      font-size:12px;
-      font-weight:800;
+      border:1px solid rgba(103,169,255,.22);
+      background:rgba(103,169,255,.10);
+      color:#dcebff;
+      font-size:13px;
+      font-weight:900;
     }
+
 
     .quick-actions{
       display:grid;
@@ -1155,19 +1210,26 @@
   <section style="padding:0 0 10px;">
     <div class="container">
 
-      <div class="announcement">
-        <div>
+            <div class="announcement">
+        <div class="announcement-content">
           <div class="announcement-badge">📢 Պարտադիր ուսուցում</div>
 
-          <h2>Ավարտեք Ձեզ համապատասխան AI դասընթացները մինչև օգոստոսի 31-ը</h2>
+          <h2>Դասընթացների վերջնաժամկետը՝ Օգոստոսի 31</h2>
 
-          <p>
-            Հարգելի՛ գործընկերներ, խնդրում ենք մինչև <strong>2026 թվականի օգոստոսի 31-ը</strong>
-            ամբողջությամբ ավարտել Ձեր դերին համապատասխան նախատեսված AI ուսումնական դասընթացները։
-            Դասընթացների ավարտից հետո ստացված բոլոր <strong>badge</strong>-երն ու
-            <strong>certificate</strong>-ները խնդրում ենք ներկայացնել Ձեր անմիջական ղեկավարին՝
-            որպես ուսուցման հաջող ավարտի հաստատում։
-          </p>
+          <div class="announcement-message">
+            <p><strong>Հարգելի՛ գործընկերներ,</strong></p>
+
+            <p>
+              Խնդրում ենք մինչև 2026 թվականի օգոստոսի 31-ը ավարտել Ձեր պաշտոնին համապատասխան
+              բոլոր AI ուսումնական դասընթացները։
+            </p>
+
+            <p>
+              Դասընթացների ավարտից հետո խնդրում ենք Ձեր անմիջական ղեկավարին ներկայացնել
+              ստացված <strong>Microsoft Badge</strong>-երը և
+              <strong>Anthropic Certificate</strong>-ները։
+            </p>
+          </div>
 
           <div class="quick-actions">
             <a class="quick-action" href="#required">
@@ -1193,6 +1255,7 @@
         </div>
 
         <aside class="deadline-card">
+          <div class="deadline-icon">📅</div>
           <div class="deadline-label">Վերջնաժամկետ</div>
           <div class="deadline-day">31</div>
           <div class="deadline-month">ՕԳՈՍՏՈՍ</div>
@@ -1919,12 +1982,12 @@ ${completedItems.length ? completedItems.join("\n") : "• Դեռ ավարտվա
 
   function updateDeadlineCountdown(){
     const now = new Date();
-    const deadline = new Date("2026-08-31T23:59:59");
+    const deadline = new Date("2026-09-01T00:00:00");
     const el = document.getElementById("deadlineCountdown");
 
     if(!el) return;
 
-    const diff = deadline - now;
+    const diff = deadline.getTime() - now.getTime();
 
     if(diff <= 0){
       el.textContent = "Վերջնաժամկետն ավարտվել է";
@@ -1932,7 +1995,21 @@ ${completedItems.length ? completedItems.join("\n") : "• Դեռ ավարտվա
     }
 
     const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-    el.textContent = days + " մնաց օր";
+    el.textContent = "Մնաց " + days + " օր";
+
+    if(days <= 7){
+      el.style.background = "rgba(255,90,90,.12)";
+      el.style.borderColor = "rgba(255,90,90,.28)";
+      el.style.color = "#ffd4d4";
+    }else if(days <= 20){
+      el.style.background = "rgba(240,196,106,.12)";
+      el.style.borderColor = "rgba(240,196,106,.28)";
+      el.style.color = "#ffe5a7";
+    }else{
+      el.style.background = "rgba(103,169,255,.10)";
+      el.style.borderColor = "rgba(103,169,255,.22)";
+      el.style.color = "#dcebff";
+    }
   }
 
   updateDeadlineCountdown();
