@@ -1110,6 +1110,151 @@
       .deadline-card{min-height:210px}
     }
 
+
+    .course-progress-box{
+      margin-top:18px;
+      padding:15px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.028);
+    }
+
+    .course-progress-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      margin-bottom:12px;
+    }
+
+    .course-progress-head span{
+      color:var(--muted);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+    }
+
+    .course-progress-head strong{
+      font-size:15px;
+      color:#e8f2ff;
+    }
+
+    .counter-controls{
+      display:grid;
+      grid-template-columns:44px 1fr 44px;
+      gap:9px;
+      align-items:center;
+    }
+
+    .counter-btn{
+      width:44px;
+      height:42px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      color:var(--text);
+      background:rgba(255,255,255,.05);
+      cursor:pointer;
+      font-size:21px;
+      font-weight:900;
+      transition:.2s ease;
+    }
+
+    .counter-btn:hover:not(:disabled){
+      transform:translateY(-2px);
+      border-color:rgba(103,169,255,.35);
+      background:rgba(103,169,255,.10);
+    }
+
+    .counter-btn:disabled{
+      opacity:.35;
+      cursor:not-allowed;
+    }
+
+    .counter-value{
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.035);
+      font-weight:900;
+    }
+
+    .completion-toggle{
+      width:100%;
+      min-height:44px;
+      padding:0 14px;
+      border-radius:12px;
+      border:1px solid rgba(103,169,255,.25);
+      color:#dcebff;
+      background:rgba(103,169,255,.08);
+      cursor:pointer;
+      font-weight:850;
+      transition:.2s ease;
+    }
+
+    .completion-toggle:hover{transform:translateY(-2px)}
+
+    .completion-toggle.is-complete{
+      color:#08170f;
+      background:linear-gradient(135deg,#8be5b3,#70e1d9);
+      border-color:transparent;
+    }
+
+    .course-card.is-complete{
+      border-color:rgba(111,218,161,.35);
+      box-shadow:0 18px 50px rgba(111,218,161,.08);
+    }
+
+    .overview-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin:18px 0;
+    }
+
+    .overview-item{
+      padding:16px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.028);
+    }
+
+    .overview-item b{
+      display:block;
+      font-size:23px;
+      margin-bottom:5px;
+    }
+
+    .overview-item span{
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .progress-note{
+      margin-top:15px!important;
+      padding:13px 14px;
+      border-radius:14px;
+      border:1px solid rgba(103,169,255,.18);
+      background:rgba(103,169,255,.06);
+      color:#cfe3ff!important;
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .progress-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    @media(max-width:760px){
+      .overview-grid{grid-template-columns:1fr}
+      .progress-actions .btn{width:100%}
+    }
+
   </style>
 </head>
 
@@ -1199,19 +1344,19 @@
 
         <div class="dash-mini">
           <div class="category-stat">
-            <b>3</b>
+            <b id="anthropicStat">0 / 3</b>
             <span>Anthropic Certificates</span>
           </div>
           <div class="category-stat">
-            <b>4</b>
+            <b id="operationsStat">0 / 4</b>
             <span>Badges Operations</span>
           </div>
           <div class="category-stat">
-            <b>16</b>
+            <b id="analyticsStat">0 / 16</b>
             <span>Badges Analytics</span>
           </div>
           <div class="summary-stat">
-            <b id="remainingStat">11</b>
+            <b id="remainingStat">23</b>
             <span>Remaining</span>
           </div>
           <div class="summary-stat">
@@ -1267,7 +1412,7 @@
 
             <a class="quick-action" href="#progress">
               <b>Իմ առաջընթացը</b>
-              <span>Նշել ավարտված փուլերն ու տեսնել progress-ը</span>
+              <span>Թարմացնել badge-երը և տեսնել ընդհանուր progress-ը</span>
             </a>
           </div>
         </div>
@@ -1340,10 +1485,10 @@
       <div class="continue-card">
         <div>
           <h3>Continue Learning</h3>
-          <p>Ձեր ընթացիկ ընդհանուր առաջընթացը բոլոր checklist կետերով։</p>
+          <p>Ձեր ընդհանուր առաջընթացը հաշվարկվում է course card-երում նշված badge-երի և certificate-ների հիման վրա։</p>
           <div class="mini-progress"><span id="miniProgress"></span></div>
         </div>
-        <a class="btn btn-primary" href="#progress">Բացել checklist-ը</a>
+        <a class="btn btn-primary" href="#progress">Տեսնել ընդհանուր առաջընթացը</a>
       </div>
 
       <div class="course-grid searchable-area">
@@ -1377,6 +1522,18 @@
               Բացել collection-ը
             </a>
           </div>
+
+          <div class="course-progress-box" data-counter-card="operations">
+            <div class="course-progress-head">
+              <span>Ստացված badge-եր</span>
+              <strong id="operationsCardValue">0 / 4</strong>
+            </div>
+            <div class="counter-controls">
+              <button class="counter-btn" type="button" data-counter-action="decrease" data-category="operations" aria-label="Նվազեցնել Operations badge-երի քանակը">−</button>
+              <div class="counter-value" id="operationsCounterValue">0 badge</div>
+              <button class="counter-btn" type="button" data-counter-action="increase" data-category="operations" aria-label="Ավելացնել Operations badge">+</button>
+            </div>
+          </div>
         </article>
 
         <article class="course-card searchable-item" style="--accent:linear-gradient(90deg,#a98dff,#67a9ff)">
@@ -1407,6 +1564,18 @@
                target="_blank" rel="noopener noreferrer">
               Բացել collection-ը
             </a>
+          </div>
+
+          <div class="course-progress-box" data-counter-card="analytics">
+            <div class="course-progress-head">
+              <span>Ստացված badge-եր</span>
+              <strong id="analyticsCardValue">0 / 16</strong>
+            </div>
+            <div class="counter-controls">
+              <button class="counter-btn" type="button" data-counter-action="decrease" data-category="analytics" aria-label="Նվազեցնել Analytics badge-երի քանակը">−</button>
+              <div class="counter-value" id="analyticsCounterValue">0 badge</div>
+              <button class="counter-btn" type="button" data-counter-action="increase" data-category="analytics" aria-label="Ավելացնել Analytics badge">+</button>
+            </div>
           </div>
         </article>
 
@@ -1439,6 +1608,14 @@
               Սկսել դասընթացը
             </a>
           </div>
+
+          <div class="course-progress-box" data-completion-card="claude101">
+            <div class="course-progress-head">
+              <span>Certificate status</span>
+              <strong data-status-label="claude101">Not completed</strong>
+            </div>
+            <button class="completion-toggle" type="button" data-completion-toggle="claude101">○ Mark as Completed</button>
+          </div>
         </article>
 
         <article class="course-card searchable-item" style="--accent:linear-gradient(90deg,#f0c46a,#70e1d9)">
@@ -1470,6 +1647,14 @@
               Սկսել դասընթացը
             </a>
           </div>
+
+          <div class="course-progress-box" data-completion-card="limitations">
+            <div class="course-progress-head">
+              <span>Certificate status</span>
+              <strong data-status-label="limitations">Not completed</strong>
+            </div>
+            <button class="completion-toggle" type="button" data-completion-toggle="limitations">○ Mark as Completed</button>
+          </div>
         </article>
 
         <article class="course-card searchable-item" style="--accent:linear-gradient(90deg,#70e1d9,#6fdaa1)">
@@ -1500,6 +1685,14 @@
                target="_blank" rel="noopener noreferrer">
               Սկսել դասընթացը
             </a>
+          </div>
+
+          <div class="course-progress-box" data-completion-card="fluency">
+            <div class="course-progress-head">
+              <span>Certificate status</span>
+              <strong data-status-label="fluency">Not completed</strong>
+            </div>
+            <button class="completion-toggle" type="button" data-completion-toggle="fluency">○ Mark as Completed</button>
           </div>
         </article>
 
@@ -1715,7 +1908,9 @@
           <span class="eyebrow">Personal Progress</span>
           <h2>Իմ ուսումնական առաջընթացը</h2>
           <p>
-            Նշեք արդեն ավարտած կետերը։ Տվյալները պահպանվում են միայն ձեր browser-ում։
+            Առաջընթացը թարմացրեք անմիջապես պարտադիր դասընթացների քարտերից՝ ավելացնելով
+            ստացված Microsoft badge-երը կամ նշելով Anthropic դասընթացի ավարտը։
+            Տվյալները պահպանվում են միայն ձեր browser-ում։
           </p>
         </div>
       </div>
@@ -1723,8 +1918,8 @@
       <div class="progress-layout">
 
         <article class="progress-card">
-          <h3>Learning Checklist</h3>
-          <p>Ավարտելուց հետո նշեք համապատասխան կետը։</p>
+          <h3>Learning Overview</h3>
+          <p>Ընդհանուր արդյունքը հաշվարկվում է 23 պարտադիր achievement-ի հիման վրա։</p>
 
           <div class="progress-bar">
             <div class="progress-fill" id="progressFill"></div>
@@ -1732,107 +1927,66 @@
 
           <div class="progress-meta">
             <span id="progressText">0% ավարտված</span>
-            <span id="progressCount">0 / 11</span>
+            <span id="progressCount">0 / 23</span>
           </div>
 
-          <div class="checklist">
-            <label class="check-item">
-              <input type="checkbox" data-progress="ms-ops">
-              <span>Ավարտել AI & Copilot Fundamentals for Operations collection-ը</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-progress="ms-data">
-              <span>Ավարտել AI & Copilot Collection for Data Analysts collection-ը</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-progress="claude-101">
-              <span>Ավարտել Claude 101 դասընթացը և certification-ը</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-progress="ai-limitations">
-              <span>Ավարտել AI Capabilities and Limitations դասընթացը</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-progress="ai-fluency">
-              <span>Ավարտել AI Fluency Framework Foundations դասընթացը</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-progress="pluralsight-365">
-              <span>Ավարտել Microsoft 365 Copilot for Outlook, Teams & OneDrive դասընթացը</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-progress="pluralsight-teams">
-              <span>Ավարտել Copilot in Microsoft Teams դասընթացը</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-progress="datacamp">
-              <span>Ավարտել Working with Microsoft Copilot դասընթացը</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-progress="linkedin">
-              <span>Ավարտել Keep Your Data Safe in Copilot Chat դասընթացը</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-progress="badges">
-              <span>Պահպանել Microsoft badge-երը և Anthropic certificate-ները</span>
-            </label>
-
-            <label class="check-item">
-              <input type="checkbox" data-progress="manager">
-              <span>Badge-երն ու certificate-ներն ուղարկել անմիջական ղեկավարին</span>
-            </label>
+          <div class="overview-grid">
+            <div class="overview-item">
+              <b id="overviewOperations">0 / 4</b>
+              <span>Operations Badges</span>
+            </div>
+            <div class="overview-item">
+              <b id="overviewAnalytics">0 / 16</b>
+              <span>Analytics Badges</span>
+            </div>
+            <div class="overview-item">
+              <b id="overviewAnthropic">0 / 3</b>
+              <span>Anthropic Certificates</span>
+            </div>
           </div>
 
-          <button class="btn btn-secondary btn-small" id="resetProgress" style="margin-top:16px">
-            Մաքրել առաջընթացը
-          </button>
+          <p class="progress-note">
+            Progress-ը ինքնուրույն նշվող է և չի հաստատում Microsoft Learn կամ Anthropic հարթակներում
+            դասընթացի փաստացի ավարտը։ Վերջնական հաստատման համար badge-երը և certificate-ները ներկայացրեք ղեկավարին։
+          </p>
+
+          <div class="progress-actions">
+            <a class="btn btn-primary btn-small" href="#required">Թարմացնել առաջընթացը</a>
+            <button class="btn btn-secondary btn-small" id="resetProgress" type="button">Մաքրել առաջընթացը</button>
+          </div>
         </article>
 
         <aside class="certificate-card">
           <h3>Badges & Certificates</h3>
-          <p>
-            Դասընթացների ավարտից հետո պահպանեք համապատասխան արդյունքը
-            և ուղարկեք ձեր անմիջական ղեկավարին։
-          </p>
+          <p>Դասընթացների ավարտից հետո պահպանեք արդյունքները և ուղարկեք անմիջական ղեկավարին։</p>
 
           <div class="cert-list">
             <div class="cert">
-              <i>✓</i>
+              <i id="operationsCertIcon">0</i>
               <div>
-                <b>Microsoft Learn Badge</b>
-                <small>Unit-ների և assessment-ների ավարտից հետո</small>
+                <b>Microsoft Operations Badges</b>
+                <small id="operationsCertText">0 / 4 badge ստացված է</small>
               </div>
             </div>
 
             <div class="cert">
-              <i>✓</i>
+              <i id="analyticsCertIcon">0</i>
               <div>
-                <b>Anthropic Certificate</b>
-                <small>Course certification-ի ավարտից հետո</small>
+                <b>Microsoft Analytics Badges</b>
+                <small id="analyticsCertText">0 / 16 badge ստացված է</small>
               </div>
             </div>
 
             <div class="cert">
-              <i>↗</i>
+              <i id="anthropicCertIcon">0</i>
               <div>
-                <b>Share with Manager</b>
-                <small>Ուղարկել screenshot-ը կամ certificate file-ը</small>
+                <b>Anthropic Certificates</b>
+                <small id="anthropicCertText">0 / 3 certificate ստացված է</small>
               </div>
             </div>
           </div>
 
-          <button class="btn btn-primary btn-small"
-                  id="copySummary"
-                  style="margin-top:18px;width:100%">
+          <button class="btn btn-primary btn-small" id="copySummary" type="button" style="margin-top:18px;width:100%">
             Պատճենել պատրաստ հաղորդագրությունը
           </button>
         </aside>
@@ -1888,8 +2042,20 @@
 <div class="toast" id="toast">Պատճենված է</div>
 
 <script>
-  const STORAGE_KEY = "coo-ai-learning-progress-v2";
-  const checkboxes = [...document.querySelectorAll("[data-progress]")];
+  const STORAGE_KEY = "coo-ai-learning-progress-v3";
+  const TOTALS = Object.freeze({operations:4, analytics:16, anthropic:3});
+  const TOTAL_ITEMS = TOTALS.operations + TOTALS.analytics + TOTALS.anthropic;
+
+  const defaultState = () => ({
+    operations:0,
+    analytics:0,
+    claude101:false,
+    limitations:false,
+    fluency:false
+  });
+
+  let progressState = loadState();
+
   const progressFill = document.getElementById("progressFill");
   const progressText = document.getElementById("progressText");
   const progressCount = document.getElementById("progressCount");
@@ -1904,43 +2070,105 @@
   const courseSearch = document.getElementById("courseSearch");
   const searchableItems = [...document.querySelectorAll(".searchable-item")];
 
+  function clamp(value,min,max){
+    return Math.min(Math.max(Number(value) || 0,min),max);
+  }
+
   function loadState(){
     try{
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      return {
+        ...defaultState(),
+        ...(saved || {}),
+        operations:clamp(saved?.operations,0,TOTALS.operations),
+        analytics:clamp(saved?.analytics,0,TOTALS.analytics),
+        claude101:Boolean(saved?.claude101),
+        limitations:Boolean(saved?.limitations),
+        fluency:Boolean(saved?.fluency)
+      };
     }catch(error){
-      return {};
+      return defaultState();
     }
   }
 
   function saveState(){
-    const state = {};
-    checkboxes.forEach(box => state[box.dataset.progress] = box.checked);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    updateProgress();
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(progressState));
+    renderProgress();
   }
 
-  function restoreProgress(){
-    const state = loadState();
-    checkboxes.forEach(box => {
-      box.checked = Boolean(state[box.dataset.progress]);
+  function anthropicCompleted(){
+    return [progressState.claude101,progressState.limitations,progressState.fluency]
+      .filter(Boolean).length;
+  }
+
+  function renderCounter(category){
+    const value = progressState[category];
+    const total = TOTALS[category];
+    const cardValue = document.getElementById(category + "CardValue");
+    const counterValue = document.getElementById(category + "CounterValue");
+
+    if(cardValue) cardValue.textContent = value + " / " + total;
+    if(counterValue) counterValue.textContent = value + (value === 1 ? " badge" : " badges");
+
+    document.querySelectorAll(`[data-counter-action][data-category="${category}"]`).forEach(button => {
+      const action = button.dataset.counterAction;
+      button.disabled = action === "decrease" ? value <= 0 : value >= total;
     });
-    updateProgress();
+
+    const card = document.querySelector(`[data-counter-card="${category}"]`)?.closest(".course-card");
+    card?.classList.toggle("is-complete",value === total);
   }
 
-  function updateProgress(){
-    const total = checkboxes.length;
-    const completed = checkboxes.filter(box => box.checked).length;
-    const remaining = total - completed;
-    const percent = Math.round((completed / total) * 100);
+  function renderCompletion(key){
+    const complete = Boolean(progressState[key]);
+    const button = document.querySelector(`[data-completion-toggle="${key}"]`);
+    const label = document.querySelector(`[data-status-label="${key}"]`);
+    const card = document.querySelector(`[data-completion-card="${key}"]`)?.closest(".course-card");
+
+    if(button){
+      button.textContent = complete ? "✓ Completed" : "○ Mark as Completed";
+      button.classList.toggle("is-complete",complete);
+      button.setAttribute("aria-pressed",String(complete));
+    }
+    if(label) label.textContent = complete ? "Completed" : "Not completed";
+    card?.classList.toggle("is-complete",complete);
+  }
+
+  function renderProgress(){
+    const anthropic = anthropicCompleted();
+    const completed = progressState.operations + progressState.analytics + anthropic;
+    const remaining = TOTAL_ITEMS - completed;
+    const percent = Math.round((completed / TOTAL_ITEMS) * 100);
     const degrees = Math.round((percent / 100) * 360);
+
+    renderCounter("operations");
+    renderCounter("analytics");
+    renderCompletion("claude101");
+    renderCompletion("limitations");
+    renderCompletion("fluency");
 
     progressFill.style.width = percent + "%";
     miniProgress.style.width = percent + "%";
     progressText.textContent = percent + "% ավարտված";
-    progressCount.textContent = completed + " / " + total;
+    progressCount.textContent = completed + " / " + TOTAL_ITEMS;
     ringPercent.textContent = percent + "%";
     completedStat.textContent = completed;
     remainingStat.textContent = remaining;
+
+    document.getElementById("operationsStat").textContent = progressState.operations + " / 4";
+    document.getElementById("analyticsStat").textContent = progressState.analytics + " / 16";
+    document.getElementById("anthropicStat").textContent = anthropic + " / 3";
+
+    document.getElementById("overviewOperations").textContent = progressState.operations + " / 4";
+    document.getElementById("overviewAnalytics").textContent = progressState.analytics + " / 16";
+    document.getElementById("overviewAnthropic").textContent = anthropic + " / 3";
+
+    document.getElementById("operationsCertIcon").textContent = progressState.operations;
+    document.getElementById("analyticsCertIcon").textContent = progressState.analytics;
+    document.getElementById("anthropicCertIcon").textContent = anthropic;
+    document.getElementById("operationsCertText").textContent = progressState.operations + " / 4 badge ստացված է";
+    document.getElementById("analyticsCertText").textContent = progressState.analytics + " / 16 badge ստացված է";
+    document.getElementById("anthropicCertText").textContent = anthropic + " / 3 certificate ստացված է";
 
     progressRing.style.background =
       `radial-gradient(circle at center,var(--panel) 54%,transparent 55%),
@@ -1950,29 +2178,54 @@
   function showToast(message){
     toast.textContent = message;
     toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 2200);
+    setTimeout(() => toast.classList.remove("show"),2200);
   }
 
-  checkboxes.forEach(box => box.addEventListener("change", saveState));
+  document.querySelectorAll("[data-counter-action]").forEach(button => {
+    button.addEventListener("click",() => {
+      const category = button.dataset.category;
+      const delta = button.dataset.counterAction === "increase" ? 1 : -1;
+      progressState[category] = clamp(progressState[category] + delta,0,TOTALS[category]);
+      saveState();
+    });
+  });
 
-  resetProgress.addEventListener("click", () => {
-    checkboxes.forEach(box => box.checked = false);
+  document.querySelectorAll("[data-completion-toggle]").forEach(button => {
+    button.addEventListener("click",() => {
+      const key = button.dataset.completionToggle;
+      progressState[key] = !progressState[key];
+      saveState();
+    });
+  });
+
+  resetProgress.addEventListener("click",() => {
+    progressState = defaultState();
     localStorage.removeItem(STORAGE_KEY);
-    updateProgress();
+    renderProgress();
     showToast("Առաջընթացը մաքրվել է");
   });
 
-  copySummary.addEventListener("click", async () => {
-    const completedItems = checkboxes
-      .filter(box => box.checked)
-      .map(box => "• " + box.closest("label").innerText.trim());
+  copySummary.addEventListener("click",async() => {
+    const anthropic = anthropicCompleted();
+    const completed = progressState.operations + progressState.analytics + anthropic;
+    const completedAnthropic = [
+      ["Claude 101",progressState.claude101],
+      ["AI Capabilities and Limitations",progressState.limitations],
+      ["AI Fluency Framework Foundations",progressState.fluency]
+    ].filter(([,done]) => done).map(([name]) => "• " + name);
 
-    const message =
-`Բարև,
+    const message = `Բարև,
 
-Տեղեկացնում եմ, որ ավարտել եմ COO Office AI Learning Program-ի հետևյալ փուլերը․
+Տեղեկացնում եմ COO Office AI Learning Program-ի իմ ընթացիկ առաջընթացը․
 
-${completedItems.length ? completedItems.join("\n") : "• Դեռ ավարտված փուլ չի նշվել"}
+• Operations Microsoft Badges՝ ${progressState.operations} / 4
+• Analytics Microsoft Badges՝ ${progressState.analytics} / 16
+• Anthropic Certificates՝ ${anthropic} / 3
+• Ընդհանուր առաջընթաց՝ ${completed} / ${TOTAL_ITEMS}
+
+Ավարտված Anthropic դասընթացներ․
+${completedAnthropic.length ? completedAnthropic.join("
+") : "• Դեռ ավարտված դասընթաց չի նշվել"}
 
 Կից ուղարկում եմ ստացված badge-երը և/կամ certificate-ները։
 
@@ -1986,27 +2239,24 @@ ${completedItems.length ? completedItems.join("\n") : "• Դեռ ավարտվա
     }
   });
 
-  courseSearch.addEventListener("input", () => {
+  courseSearch.addEventListener("input",() => {
     const query = courseSearch.value.trim().toLowerCase();
-
     searchableItems.forEach(item => {
       const matches = item.innerText.toLowerCase().includes(query);
-      item.classList.toggle("hidden", !matches);
+      item.classList.toggle("hidden",!matches);
     });
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
-  restoreProgress();
+  renderProgress();
 
   function updateDeadlineCountdown(){
     const now = new Date();
     const deadline = new Date("2026-09-01T00:00:00");
     const el = document.getElementById("deadlineCountdown");
-
     if(!el) return;
 
     const diff = deadline.getTime() - now.getTime();
-
     if(diff <= 0){
       el.textContent = "Վերջնաժամկետն ավարտվել է";
       return;
@@ -2031,8 +2281,7 @@ ${completedItems.length ? completedItems.join("\n") : "• Դեռ ավարտվա
   }
 
   updateDeadlineCountdown();
-  setInterval(updateDeadlineCountdown, 60 * 60 * 1000);
-
+  setInterval(updateDeadlineCountdown,60 * 60 * 1000);
 </script>
 
 </body>
